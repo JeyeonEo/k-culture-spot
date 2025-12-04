@@ -1,22 +1,49 @@
-# k-culture-spot
+# K-Culture Spot 🇰🇷
 
-한국 문화 명소 서비스
+K-Culture 관련 한국 관광 명소 안내 서비스 - 외국인 관광객을 위한 드라마, K-POP, 영화 촬영지 정보 제공
+
+## 주요 기능
+
+- **다국어 지원**: 한국어, 영어, 일본어, 중국어
+- **카테고리별 명소**: 드라마 촬영지, K-POP 명소, 영화 촬영지, 예능 촬영지
+- **검색 기능**: 드라마명, 아이돌 이름, 장소명으로 검색
+- **한국관광공사 API 연동**: 공식 관광 정보 자동 수집
 
 ## 기술 스택
 
-- **Backend**: Python 3.11, FastAPI
+### Frontend
+- **Framework**: React 18 + TypeScript
+- **Build Tool**: Vite
+- **Styling**: TailwindCSS
+- **i18n**: react-i18next
+- **State**: React Query
+
+### Backend
+- **Framework**: FastAPI (Python 3.11)
 - **Database**: PostgreSQL 16
 - **Cache**: Redis 7
+- **ORM**: SQLAlchemy 2.0
+
+### Infrastructure
 - **Container**: Docker, Docker Compose
+- **Server**: Nginx (frontend)
 
 ## 시작하기
 
 ### 필수 조건
 
-- Docker
-- Docker Compose
+- Docker & Docker Compose
+- Node.js 20+ (로컬 개발 시)
+- Python 3.11+ (로컬 개발 시)
 
-### 개발 환경 실행
+### 환경 변수 설정
+
+```bash
+cp .env.example .env
+# .env 파일에서 TOUR_API_KEY 설정 (한국관광공사 API 키)
+```
+
+### Docker로 실행
 
 ```bash
 # 모든 서비스 시작
@@ -29,38 +56,77 @@ docker compose logs -f
 docker compose down
 ```
 
-### 개별 서비스 실행
+### 로컬 개발 환경
 
 ```bash
-# 앱만 빌드
-docker compose build app
+# Backend
+cd /home/user/k-culture-spot
+python -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+uvicorn app.main:app --reload
 
-# 데이터베이스만 시작
-docker compose up -d db
-
-# 특정 서비스 로그 확인
-docker compose logs -f app
+# Frontend
+cd frontend
+npm install
+npm run dev
 ```
 
-### 접속 정보
+## 접속 정보
 
-- **API**: http://localhost:8000
-- **API Docs**: http://localhost:8000/docs
-- **PostgreSQL**: localhost:5432
-- **Redis**: localhost:6379
+| 서비스 | URL |
+|--------|-----|
+| Frontend | http://localhost:3000 |
+| Backend API | http://localhost:8000 |
+| API Docs (Swagger) | http://localhost:8000/docs |
+| PostgreSQL | localhost:5432 |
+| Redis | localhost:6379 |
 
 ## 프로젝트 구조
 
 ```
 k-culture-spot/
-├── app/                    # 애플리케이션 코드
-│   ├── main.py            # FastAPI 앱 엔트리포인트
+├── frontend/               # React 프론트엔드
+│   ├── src/
+│   │   ├── components/    # 재사용 컴포넌트
+│   │   ├── pages/         # 페이지 컴포넌트
+│   │   ├── i18n/          # 다국어 설정
+│   │   ├── api/           # API 클라이언트
+│   │   └── types/         # TypeScript 타입
+│   └── Dockerfile
+├── app/                    # FastAPI 백엔드
 │   ├── api/               # API 라우터
 │   ├── models/            # SQLAlchemy 모델
 │   ├── schemas/           # Pydantic 스키마
-│   └── services/          # 비즈니스 로직
-├── tests/                  # 테스트 코드
-├── Dockerfile             # Docker 이미지 설정
-├── docker-compose.yml     # 서비스 오케스트레이션
-└── requirements.txt       # Python 의존성
+│   ├── services/          # 비즈니스 로직 + 크롤러
+│   ├── core/              # 설정, DB 연결
+│   └── main.py            # 앱 엔트리포인트
+├── docker-compose.yml
+├── Dockerfile
+└── requirements.txt
 ```
+
+## API 엔드포인트
+
+### Spots
+- `GET /api/spots` - 명소 목록 (페이지네이션, 필터링)
+- `GET /api/spots/{id}` - 명소 상세
+- `GET /api/spots/featured` - 추천 명소
+- `GET /api/spots/popular` - 인기 명소
+- `GET /api/spots/search?q=` - 명소 검색
+- `GET /api/spots/category/{category}` - 카테고리별 명소
+
+### Crawler (관리용)
+- `POST /api/crawler/drama` - 드라마 촬영지 크롤링
+- `POST /api/crawler/kpop` - K-POP 명소 크롤링
+- `GET /api/crawler/status` - 크롤러 상태
+
+## 한국관광공사 API 설정
+
+1. [공공데이터포털](https://www.data.go.kr/data/15101578/openapi.do) 에서 API 키 발급
+2. `.env` 파일에 `TOUR_API_KEY` 설정
+3. `/api/crawler/drama` 또는 `/api/crawler/kpop` 엔드포인트로 데이터 수집
+
+## 라이선스
+
+MIT License

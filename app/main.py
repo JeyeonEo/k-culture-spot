@@ -13,6 +13,8 @@ from fastapi.responses import JSONResponse
 from slowapi.errors import RateLimitExceeded
 
 from app.core.config import settings
+from app.core.database import init_db
+from app.api import api_router
 from app.middleware.cors import configure_cors, CORSConfig
 from app.middleware.rate_limiter import (
     limiter,
@@ -35,6 +37,9 @@ async def lifespan(app: FastAPI) -> AsyncGenerator:
     print(f"Starting {settings.app_name} v{settings.app_version}")
     print(f"Environment: {settings.environment}")
     print(f"Debug mode: {settings.debug}")
+    
+    # Initialize database
+    await init_db()
 
     yield
 
@@ -160,8 +165,8 @@ def create_application() -> FastAPI:
             "docs": "/docs" if settings.is_development else "Disabled in production",
         }
 
-    # TODO: Register API routers here
-    # app.include_router(api_router, prefix="/api/v1")
+    # Register API routers
+    app.include_router(api_router)
 
     return app
 

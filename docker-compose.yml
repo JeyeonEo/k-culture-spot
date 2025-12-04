@@ -11,6 +11,7 @@ services:
       # - ./nginx/ssl:/etc/nginx/ssl:ro  # SSL 인증서 (프로덕션)
     depends_on:
       - app
+      - frontend
     restart: unless-stopped
     networks:
       - k-culture-network
@@ -26,7 +27,21 @@ services:
           cpus: '1'
           memory: 256M
 
-  # 메인 애플리케이션
+  # React 프론트엔드
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: k-culture-spot-frontend
+    expose:
+      - "80"
+    depends_on:
+      - app
+    restart: unless-stopped
+    networks:
+      - k-culture-network
+
+  # 메인 애플리케이션 (백엔드 API)
   app:
     build:
       context: .
