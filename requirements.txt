@@ -20,6 +20,15 @@ httpx>=0.25.0
 # Environment
 python-dotenv>=1.0.0
 
+# Security
+slowapi>=0.1.9  # Rate limiting for DDoS protection
+python-jose[cryptography]>=3.3.0  # JWT token handling
+passlib[bcrypt]>=1.7.4  # Password hashing
+cryptography>=41.0.0  # Cryptographic operations
+bleach>=6.1.0  # HTML sanitization (XSS prevention)
+email-validator>=2.1.0  # Email validation
+secure>=0.3.0  # Security headers
+
 # Testing
 pytest>=7.4.0
 pytest-asyncio>=0.21.0
