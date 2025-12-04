@@ -91,6 +91,19 @@ class RedisSettings(BaseSettings):
     session_redis_db: int = 2
 
 
+class TourismAPISettings(BaseSettings):
+    """Korea Tourism Organization API settings."""
+
+    tour_api_key: str = Field(
+        default="",
+        description="Korea Tourism Organization API key",
+    )
+    tour_api_base_url: str = Field(
+        default="http://apis.data.go.kr/B551011/KorService1",
+        description="Korea Tourism Organization API base URL",
+    )
+
+
 class Settings(BaseSettings):
     """Main application settings."""
 
@@ -119,6 +132,9 @@ class Settings(BaseSettings):
 
     # Redis
     redis: RedisSettings = Field(default_factory=RedisSettings)
+
+    # Tourism API
+    tourism: TourismAPISettings = Field(default_factory=TourismAPISettings)
 
     # Logging
     log_level: str = "INFO"

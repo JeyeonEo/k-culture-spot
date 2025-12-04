@@ -1,0 +1,52 @@
+{
+  "common": {
+    "search": "検索",
+    "searchPlaceholder": "ドラマ、アイドル、場所を検索...",
+    "viewMore": "もっと見る",
+    "viewDetail": "詳細を見る",
+    "back": "戻る",
+    "loading": "読み込み中...",
+    "noResults": "検索結果がありません",
+    "error": "エラーが発生しました"
+  },
+  "nav": {
+    "home": "ホーム",
+    "drama": "ドラマ",
+    "kpop": "K-POP",
+    "movie": "映画",
+    "all": "すべてのスポット"
+  },
+  "home": {
+    "hero": {
+      "title": "K-Cultureと一緒に韓国旅行",
+      "subtitle": "お気に入りのドラマやK-POPスターの足跡をたどってみましょう"
+    },
+    "featured": "おすすめスポット",
+    "popular": "人気スポット",
+    "categories": "カテゴリー"
+  },
+  "category": {
+    "drama": "ドラマロケ地",
+    "kpop": "K-POPスポット",
+    "movie": "映画ロケ地",
+    "variety": "バラエティロケ地"
+  },
+  "spot": {
+    "address": "住所",
+    "hours": "営業時間",
+    "phone": "電話番号",
+    "website": "ウェブサイト",
+    "relatedContent": "関連コンテンツ",
+    "howToGet": "アクセス方法",
+    "nearby": "周辺スポット",
+    "tips": "訪問のヒント"
+  },
+  "footer": {
+    "about": "K-Culture Spotについて",
+    "aboutText": "K-Culture Spotは韓流コンテンツに関連した韓国の観光スポットを紹介するサービスです。",
+    "contact": "お問い合わせ",
+    "terms": "利用規約",
+    "privacy": "プライバシーポリシー",
+    "copyright": "© 2024 K-Culture Spot. All rights reserved."
+  }
+}

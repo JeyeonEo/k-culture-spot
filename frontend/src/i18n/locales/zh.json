@@ -1,0 +1,52 @@
+{
+  "common": {
+    "search": "搜索",
+    "searchPlaceholder": "搜索电视剧、偶像、地点...",
+    "viewMore": "查看更多",
+    "viewDetail": "查看详情",
+    "back": "返回",
+    "loading": "加载中...",
+    "noResults": "没有找到结果",
+    "error": "发生错误"
+  },
+  "nav": {
+    "home": "首页",
+    "drama": "电视剧",
+    "kpop": "K-POP",
+    "movie": "电影",
+    "all": "全部景点"
+  },
+  "home": {
+    "hero": {
+      "title": "与K-Culture一起探索韩国",
+      "subtitle": "追随您喜爱的电视剧和K-POP明星的足迹"
+    },
+    "featured": "推荐景点",
+    "popular": "热门景点",
+    "categories": "分类"
+  },
+  "category": {
+    "drama": "电视剧拍摄地",
+    "kpop": "K-POP景点",
+    "movie": "电影拍摄地",
+    "variety": "综艺拍摄地"
+  },
+  "spot": {
+    "address": "地址",
+    "hours": "营业时间",
+    "phone": "电话",
+    "website": "网站",
+    "relatedContent": "相关内容",
+    "howToGet": "交通方式",
+    "nearby": "周边景点",
+    "tips": "游览提示"
+  },
+  "footer": {
+    "about": "关于K-Culture Spot",
+    "aboutText": "K-Culture Spot是介绍与韩流内容相关的韩国旅游景点的服务。",
+    "contact": "联系我们",
+    "terms": "服务条款",
+    "privacy": "隐私政策",
+    "copyright": "© 2024 K-Culture Spot. 保留所有权利。"
+  }
+}
