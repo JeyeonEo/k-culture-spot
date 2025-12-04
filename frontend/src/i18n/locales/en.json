@@ -1,0 +1,52 @@
+{
+  "common": {
+    "search": "Search",
+    "searchPlaceholder": "Search dramas, idols, places...",
+    "viewMore": "View More",
+    "viewDetail": "View Detail",
+    "back": "Back",
+    "loading": "Loading...",
+    "noResults": "No results found",
+    "error": "An error occurred"
+  },
+  "nav": {
+    "home": "Home",
+    "drama": "Drama",
+    "kpop": "K-POP",
+    "movie": "Movie",
+    "all": "All Spots"
+  },
+  "home": {
+    "hero": {
+      "title": "Explore Korea with K-Culture",
+      "subtitle": "Follow the footsteps of your favorite dramas and K-POP stars"
+    },
+    "featured": "Featured Spots",
+    "popular": "Popular Spots",
+    "categories": "Categories"
+  },
+  "category": {
+    "drama": "Drama Locations",
+    "kpop": "K-POP Spots",
+    "movie": "Movie Locations",
+    "variety": "Variety Show Locations"
+  },
+  "spot": {
+    "address": "Address",
+    "hours": "Hours",
+    "phone": "Phone",
+    "website": "Website",
+    "relatedContent": "Related Content",
+    "howToGet": "How to Get There",
+    "nearby": "Nearby Spots",
+    "tips": "Visitor Tips"
+  },
+  "footer": {
+    "about": "About K-Culture Spot",
+    "aboutText": "K-Culture Spot introduces Korean tourist attractions related to Hallyu content.",
+    "contact": "Contact Us",
+    "terms": "Terms of Service",
+    "privacy": "Privacy Policy",
+    "copyright": "© 2024 K-Culture Spot. All rights reserved."
+  }
+}

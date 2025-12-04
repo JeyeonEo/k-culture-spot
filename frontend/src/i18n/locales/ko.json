@@ -1,0 +1,52 @@
+{
+  "common": {
+    "search": "검색",
+    "searchPlaceholder": "드라마, 아이돌, 장소 검색...",
+    "viewMore": "더보기",
+    "viewDetail": "상세보기",
+    "back": "뒤로",
+    "loading": "로딩 중...",
+    "noResults": "검색 결과가 없습니다",
+    "error": "오류가 발생했습니다"
+  },
+  "nav": {
+    "home": "홈",
+    "drama": "드라마",
+    "kpop": "K-POP",
+    "movie": "영화",
+    "all": "전체 명소"
+  },
+  "home": {
+    "hero": {
+      "title": "K-Culture와 함께하는 한국 여행",
+      "subtitle": "좋아하는 드라마와 K-POP 스타의 발자취를 따라가보세요"
+    },
+    "featured": "추천 명소",
+    "popular": "인기 명소",
+    "categories": "카테고리"
+  },
+  "category": {
+    "drama": "드라마 촬영지",
+    "kpop": "K-POP 명소",
+    "movie": "영화 촬영지",
+    "variety": "예능 촬영지"
+  },
+  "spot": {
+    "address": "주소",
+    "hours": "운영시간",
+    "phone": "전화번호",
+    "website": "웹사이트",
+    "relatedContent": "관련 콘텐츠",
+    "howToGet": "가는 방법",
+    "nearby": "주변 명소",
+    "tips": "방문 팁"
+  },
+  "footer": {
+    "about": "K-Culture Spot 소개",
+    "aboutText": "K-Culture Spot은 한류 콘텐츠와 관련된 한국 관광 명소를 소개하는 서비스입니다.",
+    "contact": "문의하기",
+    "terms": "이용약관",
+    "privacy": "개인정보처리방침",
+    "copyright": "© 2024 K-Culture Spot. All rights reserved."
+  }
+}
