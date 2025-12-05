@@ -115,11 +115,11 @@ export default function Home() {
           <h2 className="text-3xl font-bold text-center mb-10">Trending Courses</h2>
           <div className="space-y-4">
             {[
-              { rank: 1, title: 'K-Drama Filming Locations Tour', category: 'Drama', students: 2847 },
-              { rank: 2, title: 'K-Pop Idol Experience', category: 'K-Pop', students: 2356 },
-              { rank: 3, title: 'Korean Traditional Culture Workshop', category: 'Culture', students: 1924 },
-              { rank: 4, title: 'Seoul Street Food Adventure', category: 'Food', students: 1785 },
-              { rank: 5, title: 'K-Beauty & Fashion Guide', category: 'Beauty', students: 1642 },
+              { rank: 1, title: '폭삭속았수다 반나절코스', author: '공식계정', category: 'drama', duration: '4시간', spots: 3 },
+              { rank: 2, title: 'NCT WISH 서울 투어', author: 'SM엔터테인먼트', category: 'kpop', duration: '5시간', spots: 4 },
+              { rank: 3, title: '오징어게임 완전정복 코스', author: '넷플릭스', category: 'drama', duration: '6시간', spots: 5 },
+              { rank: 4, title: 'BTS 성지순례 투어', author: 'HYBE', category: 'kpop', duration: '8시간', spots: 6 },
+              { rank: 5, title: 'K-Pop Hunters 홍대 투어', author: '넷플릭스', category: 'movie', duration: '3시간', spots: 3 },
             ].map((course) => (
               <div
                 key={course.rank}
@@ -129,19 +129,22 @@ export default function Home() {
                   <span className="text-white text-2xl font-bold">#{course.rank}</span>
                 </div>
                 <div className="flex-grow">
-                  <h3 className="text-xl font-semibold text-gray-900 mb-1">{course.title}</h3>
-                  <div className="flex items-center gap-4 text-sm text-gray-600">
-                    <span className="px-3 py-1 bg-pink-100 text-pink-600 rounded-full font-medium">
-                      {course.category}
-                    </span>
-                    <span>{course.students.toLocaleString()} students enrolled</span>
+                  <h3 className="text-xl font-semibold text-gray-900 mb-1">
+                    {course.title} <span className="text-gray-400 text-base font-normal">by {course.author}</span>
+                  </h3>
+                  <div className="flex items-center gap-3 text-sm text-gray-600">
+                    <span className="text-pink-500 font-medium">#{course.category}</span>
+                    <span className="text-gray-400">•</span>
+                    <span>{course.duration}</span>
+                    <span className="text-gray-400">•</span>
+                    <span>{course.spots}개 스팟</span>
                   </div>
                 </div>
                 <Link
                   to="/spots"
                   className="flex-shrink-0 bg-pink-500 hover:bg-pink-600 text-white px-6 py-3 rounded-full font-semibold transition-colors"
                 >
-                  Enroll Now
+                  둘러보기
                 </Link>
               </div>
             ))}
