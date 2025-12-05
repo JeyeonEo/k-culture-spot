@@ -52,3 +52,36 @@ export interface SearchParams {
   page?: number;
   pageSize?: number;
 }
+
+export interface Content {
+  id: number;
+  title: string;
+  titleEn: string;
+  titleJa: string;
+  titleZh: string;
+  type: 'drama' | 'movie' | 'music' | 'variety';
+  year?: number;
+  imageUrl?: string;
+  description?: string;
+  descriptionEn?: string;
+  descriptionJa?: string;
+  descriptionZh?: string;
+}
+
+export interface Tour {
+  id: number;
+  title: string;
+  titleEn: string;
+  titleJa: string;
+  titleZh: string;
+  description: string;
+  descriptionEn: string;
+  descriptionJa: string;
+  descriptionZh: string;
+  imageUrl: string;
+  author: string;
+  isOfficial: boolean;
+  spotCount: number;
+  duration: string;
+  contentId: number;
+}

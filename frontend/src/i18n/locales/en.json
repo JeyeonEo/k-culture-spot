@@ -74,6 +74,13 @@
     "nearby": "Nearby Spots",
     "tips": "Visitor Tips"
   },
+  "contentDetail": {
+    "spots": "Spots",
+    "tours": "Recommended Tours",
+    "allSpots": "All Spots",
+    "allTours": "All Tours",
+    "byOfficial": "by official"
+  },
   "footer": {
     "about": "About K-Culture Spot",
     "aboutText": "K-Culture Spot introduces Korean tourist attractions related to Hallyu content.",

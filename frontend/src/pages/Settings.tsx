@@ -1,11 +1,24 @@
 import { useTranslation } from 'react-i18next';
 import { Settings as SettingsIcon, Globe, Bell, User, Info, Shield, HelpCircle, ChevronRight } from 'lucide-react';
+import type { LucideIcon } from 'lucide-react';
 import LanguageSelector from '../components/LanguageSelector';
+
+interface SettingsItem {
+  icon: LucideIcon;
+  label: string;
+  action: string;
+  hasCustomContent?: boolean;
+}
+
+interface SettingsSection {
+  title: string;
+  items: SettingsItem[];
+}
 
 export default function Settings() {
   const { t } = useTranslation();
 
-  const settingsSections = [
+  const settingsSections: SettingsSection[] = [
     {
       title: t('settings.account'),
       items: [
