@@ -114,7 +114,7 @@ export default function Home() {
           </div>
           {loading ? (
             <div className="text-center py-8">
-              <p className="text-gray-500">로딩 중...</p>
+              <p className="text-gray-500">{t('common.loading')}</p>
             </div>
           ) : featuredSpots.length > 0 ? (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -124,7 +124,7 @@ export default function Home() {
             </div>
           ) : (
             <div className="text-center py-8">
-              <p className="text-gray-500">표시할 스팟이 없습니다.</p>
+              <p className="text-gray-500">{t('common.noResults')}</p>
             </div>
           )}
         </div>
