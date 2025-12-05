@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
-import { ArrowRight, MapPin, Star, TrendingUp } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import CategoryCard from '../components/CategoryCard';
 import SpotCard from '../components/SpotCard';
 import { spotApi } from '../api/client';
@@ -49,41 +49,6 @@ export default function Home() {
           <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
             {t('home.hero.title')}
           </h1>
-          <p className="text-lg md:text-xl text-gray-200 mb-8">
-            {t('home.hero.subtitle')}
-          </p>
-          <Link
-            to="/spots"
-            className="inline-flex items-center gap-2 bg-gradient-to-r from-pink-500 to-purple-600 text-white px-8 py-4 rounded-full font-semibold hover:from-pink-600 hover:to-purple-700 transition-all shadow-lg hover:shadow-xl"
-          >
-            {t('common.viewMore')}
-            <ArrowRight className="w-5 h-5" />
-          </Link>
-        </div>
-
-        {/* Floating Stats */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-8 md:gap-16">
-          <div className="text-center text-white">
-            <div className="flex items-center justify-center gap-1 text-2xl md:text-3xl font-bold">
-              <MapPin className="w-6 h-6" />
-              500+
-            </div>
-            <div className="text-sm text-gray-300">Spots</div>
-          </div>
-          <div className="text-center text-white">
-            <div className="flex items-center justify-center gap-1 text-2xl md:text-3xl font-bold">
-              <Star className="w-6 h-6" />
-              4.8
-            </div>
-            <div className="text-sm text-gray-300">Rating</div>
-          </div>
-          <div className="text-center text-white">
-            <div className="flex items-center justify-center gap-1 text-2xl md:text-3xl font-bold">
-              <TrendingUp className="w-6 h-6" />
-              100K+
-            </div>
-            <div className="text-sm text-gray-300">Visitors</div>
-          </div>
         </div>
       </section>
 
