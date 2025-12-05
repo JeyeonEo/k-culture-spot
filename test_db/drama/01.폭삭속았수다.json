@@ -1,0 +1,37 @@
+{
+  "name": "서울예술고등학교 (폭삭 속았수다 촬영지)",
+  "description": "tvN 드라마 '폭삭 속았수다'의 주요 촬영지로 사용된 서울예술고등학교입니다. 드라마에서 배경으로 등장한 교실, 복도, 운동장 등 실제 촬영 장소를 둘러볼 수 있습니다. 드라마 팬들이 많이 방문하는 인기 스팟입니다.",
+  "name_en": "Seoul Arts High School (Pyramid Game Filming Location)",
+  "description_en": "Seoul Arts High School, used as the main filming location for tvN drama 'Pyramid Game'. You can explore the actual filming locations including classrooms, hallways, and playgrounds featured in the drama. A popular spot visited by many drama fans.",
+  "name_ja": "ソウル芸術高等学校（暴落、騙された数多 撮影地）",
+  "description_ja": "tvNドラマ「暴落、騙された数多」の主要撮影地として使用されたソウル芸術高等学校です。ドラマに登場した教室、廊下、運動場などの実際の撮影場所を見学できます。ドラマファンが多く訪れる人気スポットです。",
+  "name_zh": "首尔艺术高中（金字塔游戏拍摄地）",
+  "description_zh": "作为tvN电视剧《金字塔游戏》主要拍摄地的首尔艺术高中。可以参观剧中出现的教室、走廊、操场等实际拍摄地点。是很多剧迷常去的热门景点。",
+  "address": "서울특별시 강남구 남부순환로 3106",
+  "address_en": "3106 Nambusunhwan-ro, Gangnam-gu, Seoul",
+  "latitude": 37.4831,
+  "longitude": 127.0336,
+  "category": "drama",
+  "image_url": "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=800",
+  "images": [
+    "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=800",
+    "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800",
+    "https://images.unsplash.com/photo-1497486751825-1233686d5d80?w=800"
+  ],
+  "phone": "02-3476-8000",
+  "website": "https://www.sarts.hs.kr",
+  "hours": "평일 09:00-18:00 (방문 시 사전 연락 필요)",
+  "tags": ["폭삭속았수다", "pyramid game", "드라마", "촬영지", "tvN", "서울예술고등학교", "학교", "강남구"],
+  "content_id": "drama_pyramid_game_001",
+  "related_contents": [
+    {
+      "title": "폭삭 속았수다",
+      "title_en": "Pyramid Game",
+      "title_ja": "暴落、騙された数多",
+      "title_zh": "金字塔游戏",
+      "content_type": "drama",
+      "year": 2024,
+      "image_url": "https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?w=400"
+    }
+  ]
+}

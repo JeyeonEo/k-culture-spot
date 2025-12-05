@@ -1,0 +1,37 @@
+{
+  "name": "홍대 클럽 스트리트 (K-Pop Hunters 촬영지)",
+  "description": "넷플릭스 영화 'K-Pop Hunters'의 주요 촬영지로 사용된 홍대 클럽 스트리트입니다. 영화에서 K-pop 아이돌들이 공연하는 클럽 장면이 촬영된 실제 장소입니다. 홍대의 대표적인 클럽가로, 다양한 라이브 공연과 K-pop 관련 이벤트가 열리는 곳입니다.",
+  "name_en": "Hongdae Club Street (K-Pop Hunters Filming Location)",
+  "description_en": "Hongdae Club Street, used as the main filming location for Netflix movie 'K-Pop Hunters'. This is the actual location where club scenes featuring K-pop idols performing were filmed. A representative club district in Hongdae where various live performances and K-pop-related events are held.",
+  "name_ja": "弘大クラブストリート（K-Pop Hunters 撮影地）",
+  "description_ja": "Netflix映画「K-Pop Hunters」の主要撮影地として使用された弘大クラブストリートです。映画でK-popアイドルがパフォーマンスするクラブシーンが撮影された実際の場所です。弘大の代表的なクラブ街で、様々なライブ公演やK-pop関連イベントが開催される場所です。",
+  "name_zh": "弘大俱乐部街（K-Pop Hunters拍摄地）",
+  "description_zh": "作为Netflix电影《K-Pop Hunters》主要拍摄地的弘大俱乐部街。这是电影中K-pop偶像表演的俱乐部场景的实际拍摄地点。弘大的代表性俱乐部街，举办各种现场演出和K-pop相关活动。",
+  "address": "서울특별시 마포구 홍익로 3길",
+  "address_en": "3-gil, Hongik-ro, Mapo-gu, Seoul",
+  "latitude": 37.5563,
+  "longitude": 126.9238,
+  "category": "movie",
+  "image_url": "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=800",
+  "images": [
+    "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=800",
+    "https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=800",
+    "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=800"
+  ],
+  "phone": "02-1234-5678",
+  "website": "https://www.hongdae-club.com",
+  "hours": "매일 20:00-익일 05:00",
+  "tags": ["K-Pop Hunters", "넷플릭스", "영화", "촬영지", "K-pop", "홍대", "클럽", "라이브", "공연"],
+  "content_id": "movie_kpop_hunters_001",
+  "related_contents": [
+    {
+      "title": "K-Pop Hunters",
+      "title_en": "K-Pop Hunters",
+      "title_ja": "K-Pop Hunters",
+      "title_zh": "K-Pop Hunters",
+      "content_type": "movie",
+      "year": 2024,
+      "image_url": "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=400"
+    }
+  ]
+}
