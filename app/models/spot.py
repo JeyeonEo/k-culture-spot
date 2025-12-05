@@ -85,6 +85,12 @@ class Spot(Base):
     related_contents: Mapped[list["RelatedContent"]] = relationship(
         back_populates="spot", cascade="all, delete-orphan"
     )
+    spot_contents: Mapped[list["SpotContent"]] = relationship(
+        back_populates="spot"
+    )
+    tour_spots: Mapped[list["TourSpot"]] = relationship(
+        back_populates="spot"
+    )
 
 
 class RelatedContent(Base):
