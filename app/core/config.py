@@ -18,6 +18,15 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 class SecuritySettings(BaseSettings):
     """Security-specific settings."""
 
+    model_config = SettingsConfigDict(
+        env_file=".env",
+        env_file_encoding="utf-8",
+        case_sensitive=False,
+        json_schema_extra={
+            "cors_origins": {"json_schema_extra": {"json_encoders": {list: lambda v: v}}}
+        },
+    )
+
     # Secret key for JWT and session management
     secret_key: str = Field(
         default_factory=lambda: secrets.token_urlsafe(32),
@@ -48,6 +57,32 @@ class SecuritySettings(BaseSettings):
 
     # Trusted hosts
     allowed_hosts: list[str] = Field(default=["localhost", "127.0.0.1"])
+    
+    @field_validator("cors_origins", mode="before")
+    @classmethod
+    def parse_cors_origins(cls, v):
+        """Parse CORS origins from environment variable."""
+        if isinstance(v, str):
+            # Try JSON parsing first
+            import json
+            try:
+                return json.loads(v)
+            except json.JSONDecodeError:
+                # Fallback to comma-separated values
+                return [origin.strip() for origin in v.split(",") if origin.strip()]
+        return v
+    
+    @field_validator("allowed_hosts", mode="before")
+    @classmethod
+    def parse_allowed_hosts(cls, v):
+        """Parse allowed hosts from environment variable."""
+        if isinstance(v, str):
+            import json
+            try:
+                return json.loads(v)
+            except json.JSONDecodeError:
+                return [host.strip() for host in v.split(",") if host.strip()]
+        return v
 
     @field_validator("secret_key")
     @classmethod
