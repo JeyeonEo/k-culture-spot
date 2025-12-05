@@ -99,9 +99,9 @@ export default function Settings() {
 
         {/* App Version */}
         <div className="text-center py-8 text-sm text-gray-500">
-          <p>K-Culture Spot</p>
+          <p>HypeSpot</p>
           <p className="mt-1">Version 1.0.0</p>
-          <p className="mt-4 text-xs">© 2024 K-Culture Spot. All rights reserved.</p>
+          <p className="mt-4 text-xs">© 2024 HypeSpot. All rights reserved.</p>
         </div>
       </div>
     </div>

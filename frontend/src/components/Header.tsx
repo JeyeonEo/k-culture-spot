@@ -45,7 +45,7 @@ export default function Header() {
             </div>
             <div className="flex flex-col">
               <span className="text-xl font-bold bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 bg-clip-text text-transparent">
-                K-Culture Spot
+                HypeSpot
               </span>
               <span className="text-xs text-gray-500 -mt-1">한류 투어 가이드</span>
             </div>

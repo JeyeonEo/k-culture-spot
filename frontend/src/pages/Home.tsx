@@ -113,7 +113,7 @@ export default function Home() {
       <section className="py-20 px-4 bg-gradient-to-r from-pink-500 to-purple-600">
         <div className="max-w-4xl mx-auto text-center text-white">
           <h2 className="text-3xl md:text-4xl font-bold mb-6">
-            Start Your K-Culture Journey Today
+            Start Your HypeSpot Journey Today
           </h2>
           <p className="text-lg text-pink-100 mb-8">
             Discover the filming locations of your favorite dramas and the footsteps of K-POP stars
