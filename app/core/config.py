@@ -62,15 +62,26 @@ class SecuritySettings(BaseSettings):
     @classmethod
     def parse_cors_origins(cls, v):
         """Parse CORS origins from environment variable."""
+        if v is None:
+            return ["http://localhost:3000", "http://localhost:8080"]  # Return default instead of None
         if isinstance(v, str):
+            if not v.strip():
+                return ["http://localhost:3000", "http://localhost:8080"]  # Return default instead of None
             # Try JSON parsing first
             import json
             try:
-                return json.loads(v)
-            except json.JSONDecodeError:
-                # Fallback to comma-separated values
-                return [origin.strip() for origin in v.split(",") if origin.strip()]
-        return v
+                parsed = json.loads(v)
+                if isinstance(parsed, list):
+                    return parsed
+            except (json.JSONDecodeError, ValueError):
+                pass
+            # Fallback to comma-separated values
+            origins = [origin.strip() for origin in v.split(",") if origin.strip()]
+            return origins if origins else ["http://localhost:3000", "http://localhost:8080"]
+        if isinstance(v, list):
+            return v
+        # If we can't parse it, return default
+        return ["http://localhost:3000", "http://localhost:8080"]
     
     @field_validator("allowed_hosts", mode="before")
     @classmethod
