@@ -4,10 +4,14 @@
 @import "tailwindcss";
 
 :root {
-  --color-primary: #e91e63;
-  --color-primary-dark: #c2185b;
-  --color-secondary: #9c27b0;
-  --color-accent: #ff5722;
+  /* Sophisticated 2030 female target colors */
+  --color-primary: #ff6b9d;
+  --color-primary-dark: #ff5189;
+  --color-secondary: #c77dff;
+  --color-accent: #ffafcc;
+  --color-neutral: #f8f9fa;
+  --color-text: #2d3748;
+  --color-text-light: #718096;
 }
 
 body {
