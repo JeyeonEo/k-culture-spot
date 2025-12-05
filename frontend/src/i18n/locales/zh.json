@@ -16,6 +16,39 @@
     "movie": "电影",
     "all": "全部景点"
   },
+  "bottomNav": {
+    "explore": "探索",
+    "community": "社区",
+    "favorites": "收藏",
+    "settings": "设置"
+  },
+  "community": {
+    "title": "社区",
+    "subtitle": "与韩流粉丝交流",
+    "createPost": "分享您的故事",
+    "comingSoon": "更多功能即将推出"
+  },
+  "favorites": {
+    "title": "收藏",
+    "subtitle": "查看您保存的景点",
+    "saved": "保存于",
+    "empty": "还没有保存的景点",
+    "emptyDesc": "保存您喜爱的景点，稍后在这里找到它们",
+    "explore": "探索景点"
+  },
+  "settings": {
+    "title": "设置",
+    "subtitle": "管理应用设置",
+    "account": "账户",
+    "profile": "个人资料",
+    "notifications": "通知",
+    "preferences": "偏好设置",
+    "language": "语言",
+    "about": "关于",
+    "aboutApp": "关于应用",
+    "privacy": "隐私政策",
+    "help": "帮助"
+  },
   "home": {
     "hero": {
       "title": "与K-Culture一起探索韩国",
@@ -33,13 +66,33 @@
   },
   "spot": {
     "address": "地址",
+    "description": "说明",
+    "information": "信息",
     "hours": "营业时间",
     "phone": "电话",
     "website": "网站",
     "relatedContent": "相关内容",
     "howToGet": "交通方式",
     "nearby": "周边景点",
-    "tips": "游览提示"
+    "tips": "小贴士",
+    "mediaScene": "媒体场景",
+    "pin": "收藏",
+    "unpin": "取消收藏"
+  },
+  "contentDetail": {
+    "spots": "景点",
+    "tours": "推荐路线",
+    "allSpots": "全部景点",
+    "allTours": "全部路线",
+    "byOfficial": "by official"
+  },
+  "tour": {
+    "duration": "所需",
+    "startNavigation": "开始导航",
+    "openNavigation": "打开导航",
+    "totalDistance": "总距离",
+    "travelTime": "行驶时间",
+    "spots": "景点"
   },
   "footer": {
     "about": "关于K-Culture Spot",

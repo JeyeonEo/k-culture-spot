@@ -1,72 +1,98 @@
-import { useParams, Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import {
   ArrowLeft,
-  MapPin,
+  Pin,
+  Copy,
+  Check,
   Clock,
   Phone,
   Globe,
-  Share2,
-  Heart,
-  Navigation,
 } from 'lucide-react';
-import type { Spot } from '../types';
+import type { Spot, SpotTip } from '../types';
+import ImageModal from '../components/ImageModal';
 
-// Mock data
+// Mock data with tips
 const mockSpot: Spot = {
   id: 1,
-  name: '북촌 한옥마을',
-  nameEn: 'Bukchon Hanok Village',
-  nameJa: '北村韓屋村',
-  nameZh: '北村韩屋村',
-  description: '북촌한옥마을은 경복궁과 창덕궁, 종묘 사이에 위치한 곳으로 서울 600년 역사와 함께해온 우리의 전통 거주 지역입니다. 도깨비, 사랑의 불시착, 개인의 취향 등 수많은 드라마 촬영지로 유명하며, 전통 한옥의 아름다움을 느낄 수 있는 서울의 대표 관광지입니다.',
-  descriptionEn: 'Bukchon Hanok Village is located between Gyeongbokgung Palace, Changdeokgung Palace, and Jongmyo Shrine. It is a traditional residential area that has been with Seoul for 600 years. Famous as a filming location for numerous dramas including Goblin, Crash Landing on You, and Personal Taste.',
-  descriptionJa: '北村韓屋村は景福宮と昌徳宮、宗廟の間に位置する場所で、ソウル600年の歴史とともにしてきた韓国の伝統居住地域です。トッケビ、愛の不時着、個人の趣向など数多くのドラマ撮影地として有名です。',
-  descriptionZh: '北村韩屋村位于景福宫、昌德宫和宗庙之间，是与首尔600年历史共存的传统居住区。因鬼怪、爱的迫降、个人取向等众多电视剧的拍摄地而闻名。',
-  address: '서울특별시 종로구 북촌로 일대',
-  addressEn: 'Bukchon-ro area, Jongno-gu, Seoul',
-  latitude: 37.5826,
-  longitude: 126.9831,
+  name: '남산타워',
+  nameEn: 'Namsan Tower',
+  nameJa: 'Nソウルタワー',
+  nameZh: '南山塔',
+  description: '남산타워(N서울타워)는 서울의 대표적인 랜드마크로, 수많은 드라마와 영화의 촬영지로 사랑받고 있습니다. 특히 드라마 "별에서 온 그대"에서 도민준과 천송이가 데이트를 즐긴 장소로 유명합니다. 서울 시내를 360도로 조망할 수 있으며, 사랑의 자물쇠가 있는 곳으로도 유명합니다.',
+  descriptionEn: 'Namsan Tower (N Seoul Tower) is a representative landmark of Seoul, beloved as a filming location for numerous dramas and movies. It is particularly famous as the place where Do Min-joon and Cheon Song-yi had their date in the drama "My Love from the Star". You can enjoy a 360-degree view of Seoul, and it is also famous for its love locks.',
+  descriptionJa: 'Nソウルタワーはソウルの代表的なランドマークで、数多くのドラマや映画の撮影地として愛されています。特にドラマ「星から来たあなた」でド・ミンジュンとチョン・ソンイがデートを楽しんだ場所として有名です。ソウル市内を360度見渡すことができ、愛の南京錠でも有名です。',
+  descriptionZh: '南山塔是首尔的代表性地标，作为众多电视剧和电影的拍摄地而深受喜爱。尤其是电视剧《来自星星的你》中都敏俊和千颂伊约会的地方而闻名。可以360度俯瞰首尔市区，也因爱情锁而闻名。',
+  address: '서울특별시 용산구 남산공원길 105',
+  addressEn: '105 Namsangongwon-gil, Yongsan-gu, Seoul',
+  latitude: 37.5512,
+  longitude: 126.9882,
   category: 'drama',
-  imageUrl: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=1200',
+  imageUrl: 'https://images.unsplash.com/photo-1617469767053-d3b523a0b982?w=800',
+  mediaImage: 'https://images.unsplash.com/photo-1538485399081-7191377e8241?w=800',
   images: [
-    'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=800',
-    'https://images.unsplash.com/photo-1517154421773-0529f29ea451?w=800',
-    'https://images.unsplash.com/photo-1546874177-9e664107314e?w=800',
+    'https://images.unsplash.com/photo-1617469767053-d3b523a0b982?w=600',
+    'https://images.unsplash.com/photo-1546874177-9e664107314e?w=600',
+    'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=600',
+    'https://images.unsplash.com/photo-1517154421773-0529f29ea451?w=600',
   ],
   relatedContent: [
     {
       id: 1,
-      title: '도깨비',
-      titleEn: 'Goblin',
-      titleJa: 'トッケビ',
-      titleZh: '鬼怪',
+      title: '별에서 온 그대',
+      titleEn: 'My Love from the Star',
+      titleJa: '星から来たあなた',
+      titleZh: '来自星星的你',
       type: 'drama',
-      year: 2016,
+      year: 2013,
+    },
+  ],
+  phone: '02-3455-9277',
+  website: 'https://www.seoultower.co.kr',
+  hours: '10:00 - 23:00 (주말 10:00 - 24:00)',
+  tags: ['별에서 온 그대', '남산', '전망대', '데이트'],
+  tips: [
+    {
+      id: 1,
+      content: '야경을 보려면 일몰 30분 전에 가는 걸 추천해요! 해질녘부터 야경까지 다 볼 수 있어요 ✨',
+      author: '서울러버',
+      createdAt: '2024-03-15',
     },
     {
       id: 2,
-      title: '사랑의 불시착',
-      titleEn: 'Crash Landing on You',
-      titleJa: '愛の不時着',
-      titleZh: '爱的迫降',
-      type: 'drama',
-      year: 2019,
+      content: '케이블카 타고 올라가면 줄이 길어요. 버스 타고 올라가서 내려올 때 케이블카 타는 게 좋아요!',
+      author: '여행고수',
+      createdAt: '2024-03-10',
+    },
+    {
+      id: 3,
+      content: '사랑의 자물쇠 달려면 자물쇠 미리 사가세요! 현장에서 사면 비싸요 💸',
+      author: '알뜰족',
+      createdAt: '2024-02-28',
     },
   ],
-  phone: '02-2148-4160',
-  website: 'https://bukchon.seoul.go.kr',
-  hours: '연중무휴 (외부 관람 자유)',
-  tags: ['도깨비', '사랑의 불시착', '한옥', '전통'],
-  viewCount: 15234,
+  viewCount: 25000,
   createdAt: '2024-01-01',
   updatedAt: '2024-01-01',
 };
 
 export default function SpotDetail() {
   const { id: _id } = useParams();
+  const navigate = useNavigate();
   const { t, i18n } = useTranslation();
-  const spot = mockSpot; // TODO: In real app, fetch by _id from API
+  const spot = mockSpot; // TODO: fetch from API using _id
+
+  const [isPinned, setIsPinned] = useState(false);
+  const [copied, setCopied] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  // Check if spot is pinned in localStorage
+  useEffect(() => {
+    const pinnedSpots = JSON.parse(localStorage.getItem('pinnedSpots') || '[]');
+    setIsPinned(pinnedSpots.includes(spot.id));
+  }, [spot.id]);
 
   const getName = () => {
     switch (i18n.language) {
@@ -86,183 +112,234 @@ export default function SpotDetail() {
     }
   };
 
-  const getContentTitle = (content: typeof spot.relatedContent[0]) => {
-    switch (i18n.language) {
-      case 'en': return content.titleEn || content.title;
-      case 'ja': return content.titleJa || content.title;
-      case 'zh': return content.titleZh || content.title;
-      default: return content.title;
+  const getAddress = () => {
+    if (i18n.language === 'en') {
+      return spot.addressEn || spot.address;
+    }
+    return spot.address;
+  };
+
+  const handlePin = () => {
+    const pinnedSpots = JSON.parse(localStorage.getItem('pinnedSpots') || '[]');
+    if (isPinned) {
+      const newPinned = pinnedSpots.filter((id: number) => id !== spot.id);
+      localStorage.setItem('pinnedSpots', JSON.stringify(newPinned));
+    } else {
+      pinnedSpots.push(spot.id);
+      localStorage.setItem('pinnedSpots', JSON.stringify(pinnedSpots));
+    }
+    setIsPinned(!isPinned);
+  };
+
+  const handleCopyAddress = async () => {
+    try {
+      await navigator.clipboard.writeText(getAddress());
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch (err) {
+      console.error('Failed to copy address:', err);
     }
   };
 
+  const openGoogleMaps = () => {
+    const url = `https://www.google.com/maps/search/?api=1&query=${spot.latitude},${spot.longitude}`;
+    window.open(url, '_blank');
+  };
+
+  const openNaverMaps = () => {
+    const url = `https://map.naver.com/v5/search/${encodeURIComponent(spot.address)}`;
+    window.open(url, '_blank');
+  };
+
+  const handleImageClick = (index: number, isMediaImage: boolean = false) => {
+    const allImages = spot.mediaImage
+      ? [spot.mediaImage, ...spot.images]
+      : spot.images;
+    setCurrentImageIndex(isMediaImage ? 0 : (spot.mediaImage ? index + 1 : index));
+    setModalOpen(true);
+  };
+
+  const allImages = spot.mediaImage
+    ? [spot.mediaImage, ...spot.images]
+    : spot.images;
+
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Hero Image */}
-      <div className="relative h-[50vh] min-h-[400px]">
-        <img
-          src={spot.imageUrl}
-          alt={getName()}
-          className="w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-
-        {/* Back Button */}
-        <Link
-          to="/spots"
-          className="absolute top-4 left-4 flex items-center gap-2 bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full hover:bg-white transition-colors"
-        >
-          <ArrowLeft className="w-5 h-5" />
-          <span>{t('common.back')}</span>
-        </Link>
-
-        {/* Action Buttons */}
-        <div className="absolute top-4 right-4 flex gap-2">
-          <button className="p-3 bg-white/90 backdrop-blur-sm rounded-full hover:bg-white transition-colors">
-            <Share2 className="w-5 h-5" />
+    <div className="min-h-screen bg-gray-50 pb-20">
+      {/* Header */}
+      <header className="sticky top-0 z-40 bg-white border-b border-gray-200">
+        <div className="flex items-center justify-between px-4 h-14">
+          <button
+            onClick={() => navigate(-1)}
+            className="p-2 -ml-2 hover:bg-gray-100 rounded-full transition-colors"
+            aria-label={t('common.back')}
+          >
+            <ArrowLeft className="w-6 h-6" />
           </button>
-          <button className="p-3 bg-white/90 backdrop-blur-sm rounded-full hover:bg-white transition-colors">
-            <Heart className="w-5 h-5" />
+
+          <h1 className="font-bold text-lg truncate mx-4">{getName()}</h1>
+
+          <button
+            onClick={handlePin}
+            className={`p-2 -mr-2 rounded-full transition-colors ${
+              isPinned ? 'text-pink-500' : 'text-gray-600 hover:bg-gray-100'
+            }`}
+            aria-label={isPinned ? t('spot.unpin') : t('spot.pin')}
+          >
+            <Pin className={`w-6 h-6 ${isPinned ? 'fill-current' : ''}`} />
           </button>
         </div>
+      </header>
 
-        {/* Title */}
-        <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-          <span className="inline-block px-3 py-1 bg-pink-500 text-sm rounded-full mb-3">
-            {t(`category.${spot.category}`)}
-          </span>
-          <h1 className="text-3xl md:text-4xl font-bold">{getName()}</h1>
-        </div>
-      </div>
-
-      {/* Content */}
-      <div className="max-w-5xl mx-auto px-4 py-8">
-        <div className="grid md:grid-cols-3 gap-8">
-          {/* Main Content */}
-          <div className="md:col-span-2 space-y-8">
-            {/* Description */}
-            <section className="bg-white rounded-xl p-6 shadow-sm">
-              <p className="text-gray-700 leading-relaxed">{getDescription()}</p>
-            </section>
-
-            {/* Image Gallery */}
-            <section className="bg-white rounded-xl p-6 shadow-sm">
-              <h2 className="text-xl font-bold mb-4">Gallery</h2>
-              <div className="grid grid-cols-3 gap-2">
-                {spot.images.map((img, idx) => (
-                  <img
-                    key={idx}
-                    src={img}
-                    alt={`${getName()} ${idx + 1}`}
-                    className="w-full aspect-square object-cover rounded-lg"
-                  />
-                ))}
-              </div>
-            </section>
-
-            {/* Related Content */}
-            {spot.relatedContent.length > 0 && (
-              <section className="bg-white rounded-xl p-6 shadow-sm">
-                <h2 className="text-xl font-bold mb-4">{t('spot.relatedContent')}</h2>
-                <div className="grid grid-cols-2 gap-4">
-                  {spot.relatedContent.map((content) => (
-                    <div
-                      key={content.id}
-                      className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg"
-                    >
-                      <div className="w-12 h-12 bg-gradient-to-br from-pink-400 to-purple-500 rounded-lg flex items-center justify-center text-white font-bold">
-                        {content.type === 'drama' ? 'D' : content.type === 'movie' ? 'M' : 'V'}
-                      </div>
-                      <div>
-                        <p className="font-medium">{getContentTitle(content)}</p>
-                        <p className="text-sm text-gray-500">{content.year}</p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </section>
-            )}
+      {/* Photo Collage */}
+      <section className="p-4">
+        <div className="flex gap-2 h-64 md:h-80">
+          {/* Main media image (left) */}
+          <div
+            className="flex-1 cursor-pointer overflow-hidden rounded-l-xl"
+            onClick={() => handleImageClick(0, true)}
+          >
+            <img
+              src={spot.mediaImage || spot.imageUrl}
+              alt={`${getName()} - ${t('spot.mediaScene')}`}
+              className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+            />
           </div>
 
-          {/* Sidebar */}
-          <div className="space-y-6">
-            {/* Info Card */}
-            <div className="bg-white rounded-xl p-6 shadow-sm space-y-4">
-              <div className="flex items-start gap-3">
-                <MapPin className="w-5 h-5 text-pink-500 mt-0.5" />
-                <div>
-                  <p className="text-sm text-gray-500">{t('spot.address')}</p>
-                  <p className="text-gray-900">
-                    {i18n.language === 'en' ? spot.addressEn : spot.address}
-                  </p>
-                </div>
+          {/* Location images grid (right) */}
+          <div className="flex-1 grid grid-cols-2 grid-rows-2 gap-2">
+            {spot.images.slice(0, 4).map((img, idx) => (
+              <div
+                key={idx}
+                className={`cursor-pointer overflow-hidden ${
+                  idx === 1 ? 'rounded-tr-xl' : idx === 3 ? 'rounded-br-xl' : ''
+                }`}
+                onClick={() => handleImageClick(idx)}
+              >
+                <img
+                  src={img}
+                  alt={`${getName()} ${idx + 1}`}
+                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                />
               </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
-              {spot.hours && (
-                <div className="flex items-start gap-3">
-                  <Clock className="w-5 h-5 text-pink-500 mt-0.5" />
-                  <div>
-                    <p className="text-sm text-gray-500">{t('spot.hours')}</p>
-                    <p className="text-gray-900">{spot.hours}</p>
-                  </div>
-                </div>
-              )}
-
-              {spot.phone && (
-                <div className="flex items-start gap-3">
-                  <Phone className="w-5 h-5 text-pink-500 mt-0.5" />
-                  <div>
-                    <p className="text-sm text-gray-500">{t('spot.phone')}</p>
-                    <p className="text-gray-900">{spot.phone}</p>
-                  </div>
-                </div>
-              )}
-
-              {spot.website && (
-                <div className="flex items-start gap-3">
-                  <Globe className="w-5 h-5 text-pink-500 mt-0.5" />
-                  <div>
-                    <p className="text-sm text-gray-500">{t('spot.website')}</p>
-                    <a
-                      href={spot.website}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-pink-500 hover:underline"
-                    >
-                      {t('common.viewDetail')}
-                    </a>
-                  </div>
-                </div>
-              )}
-            </div>
-
-            {/* Map / Directions Button */}
-            <a
-              href={`https://map.kakao.com/link/to/${encodeURIComponent(spot.name)},${spot.latitude},${spot.longitude}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center justify-center gap-2 w-full bg-gradient-to-r from-pink-500 to-purple-600 text-white py-4 rounded-xl font-semibold hover:from-pink-600 hover:to-purple-700 transition-all"
+      {/* Address Section */}
+      <section className="mx-4 bg-white rounded-xl p-4 shadow-sm">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-2 flex-1 min-w-0">
+            <span className="text-gray-500 text-sm shrink-0">{t('spot.address')}:</span>
+            <button
+              onClick={handleCopyAddress}
+              className="flex items-center gap-1 text-gray-900 truncate hover:text-pink-500 transition-colors"
             >
-              <Navigation className="w-5 h-5" />
-              {t('spot.howToGet')}
-            </a>
+              <span className="truncate">{getAddress()}</span>
+              {copied ? (
+                <Check className="w-4 h-4 text-green-500 shrink-0" />
+              ) : (
+                <Copy className="w-4 h-4 text-gray-400 shrink-0" />
+              )}
+            </button>
+          </div>
 
-            {/* Tags */}
-            <div className="bg-white rounded-xl p-6 shadow-sm">
-              <h3 className="font-semibold mb-3">Tags</h3>
-              <div className="flex flex-wrap gap-2">
-                {spot.tags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="px-3 py-1 bg-gray-100 text-gray-600 text-sm rounded-full"
-                  >
-                    #{tag}
-                  </span>
-                ))}
-              </div>
-            </div>
+          <div className="flex gap-2 ml-3">
+            <button
+              onClick={openGoogleMaps}
+              className="w-8 h-8 flex items-center justify-center rounded-full bg-blue-500 text-white font-bold text-sm hover:bg-blue-600 transition-colors"
+              aria-label="Open in Google Maps"
+            >
+              G
+            </button>
+            <button
+              onClick={openNaverMaps}
+              className="w-8 h-8 flex items-center justify-center rounded-full bg-green-500 text-white font-bold text-sm hover:bg-green-600 transition-colors"
+              aria-label="Open in Naver Maps"
+            >
+              N
+            </button>
           </div>
         </div>
-      </div>
+      </section>
+
+      {/* Description Section */}
+      <section className="mx-4 mt-4 bg-white rounded-xl p-4 shadow-sm">
+        <h2 className="font-bold text-lg mb-3">{t('spot.description')}</h2>
+        <p className="text-gray-700 leading-relaxed">{getDescription()}</p>
+      </section>
+
+      {/* Information Section */}
+      <section className="mx-4 mt-4 bg-white rounded-xl p-4 shadow-sm">
+        <h2 className="font-bold text-lg mb-3">{t('spot.information')}</h2>
+        <div className="space-y-3">
+          {spot.hours && (
+            <div className="flex items-center gap-3">
+              <Clock className="w-5 h-5 text-pink-500" />
+              <div>
+                <p className="text-sm text-gray-500">{t('spot.hours')}</p>
+                <p className="text-gray-900">{spot.hours}</p>
+              </div>
+            </div>
+          )}
+          {spot.phone && (
+            <div className="flex items-center gap-3">
+              <Phone className="w-5 h-5 text-pink-500" />
+              <div>
+                <p className="text-sm text-gray-500">{t('spot.phone')}</p>
+                <a href={`tel:${spot.phone}`} className="text-gray-900 hover:text-pink-500">
+                  {spot.phone}
+                </a>
+              </div>
+            </div>
+          )}
+          {spot.website && (
+            <div className="flex items-center gap-3">
+              <Globe className="w-5 h-5 text-pink-500" />
+              <div>
+                <p className="text-sm text-gray-500">{t('spot.website')}</p>
+                <a
+                  href={spot.website}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-pink-500 hover:underline"
+                >
+                  {t('common.viewDetail')}
+                </a>
+              </div>
+            </div>
+          )}
+        </div>
+      </section>
+
+      {/* Tips Section - iPhone Message Style */}
+      {spot.tips && spot.tips.length > 0 && (
+        <section className="mx-4 mt-4 bg-white rounded-xl p-4 shadow-sm">
+          <h2 className="font-bold text-lg mb-4">{t('spot.tips')}</h2>
+          <div className="space-y-3">
+            {spot.tips.map((tip: SpotTip) => (
+              <div key={tip.id} className="flex flex-col items-start">
+                <div className="max-w-[85%] bg-gray-100 rounded-2xl rounded-bl-md px-4 py-3">
+                  <p className="text-gray-900">{tip.content}</p>
+                </div>
+                <span className="text-xs text-gray-400 mt-1 ml-2">
+                  {tip.author}
+                </span>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {/* Image Modal */}
+      <ImageModal
+        images={allImages}
+        currentIndex={currentImageIndex}
+        isOpen={modalOpen}
+        onClose={() => setModalOpen(false)}
+        onNavigate={setCurrentImageIndex}
+        alt={getName()}
+      />
     </div>
   );
 }

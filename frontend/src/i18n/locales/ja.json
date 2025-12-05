@@ -16,6 +16,39 @@
     "movie": "映画",
     "all": "すべてのスポット"
   },
+  "bottomNav": {
+    "explore": "探索",
+    "community": "コミュニティ",
+    "favorites": "お気に入り",
+    "settings": "設定"
+  },
+  "community": {
+    "title": "コミュニティ",
+    "subtitle": "K-Cultureファンと交流しよう",
+    "createPost": "ストーリーを共有",
+    "comingSoon": "より多くの機能が近日公開"
+  },
+  "favorites": {
+    "title": "お気に入り",
+    "subtitle": "保存したスポットを表示",
+    "saved": "保存日",
+    "empty": "保存されたスポットはまだありません",
+    "emptyDesc": "お気に入りのスポットを保存して後で探しましょう",
+    "explore": "スポットを探索"
+  },
+  "settings": {
+    "title": "設定",
+    "subtitle": "アプリの設定を管理",
+    "account": "アカウント",
+    "profile": "プロフィール",
+    "notifications": "通知",
+    "preferences": "環境設定",
+    "language": "言語",
+    "about": "情報",
+    "aboutApp": "アプリについて",
+    "privacy": "プライバシーポリシー",
+    "help": "ヘルプ"
+  },
   "home": {
     "hero": {
       "title": "K-Cultureと一緒に韓国旅行",
@@ -33,13 +66,33 @@
   },
   "spot": {
     "address": "住所",
+    "description": "説明",
+    "information": "情報",
     "hours": "営業時間",
     "phone": "電話番号",
     "website": "ウェブサイト",
     "relatedContent": "関連コンテンツ",
     "howToGet": "アクセス方法",
     "nearby": "周辺スポット",
-    "tips": "訪問のヒント"
+    "tips": "お得情報",
+    "mediaScene": "メディアのシーン",
+    "pin": "保存する",
+    "unpin": "保存解除"
+  },
+  "contentDetail": {
+    "spots": "スポット",
+    "tours": "おすすめコース",
+    "allSpots": "すべてのスポット",
+    "allTours": "すべてのコース",
+    "byOfficial": "by official"
+  },
+  "tour": {
+    "duration": "所要",
+    "startNavigation": "ナビを開始",
+    "openNavigation": "ナビを開く",
+    "totalDistance": "総距離",
+    "travelTime": "移動時間",
+    "spots": "スポット"
   },
   "footer": {
     "about": "K-Culture Spotについて",

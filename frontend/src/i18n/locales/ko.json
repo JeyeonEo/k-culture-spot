@@ -16,6 +16,39 @@
     "movie": "영화",
     "all": "전체 명소"
   },
+  "bottomNav": {
+    "explore": "탐색",
+    "community": "커뮤니티",
+    "favorites": "즐겨찾기",
+    "settings": "설정"
+  },
+  "community": {
+    "title": "커뮤니티",
+    "subtitle": "한류 팬들과 이야기를 나눠보세요",
+    "createPost": "새로운 이야기 공유하기",
+    "comingSoon": "더 많은 기능이 곧 추가될 예정입니다"
+  },
+  "favorites": {
+    "title": "즐겨찾기",
+    "subtitle": "저장한 명소를 확인하세요",
+    "saved": "저장일",
+    "empty": "아직 저장한 명소가 없습니다",
+    "emptyDesc": "마음에 드는 명소를 저장하고 나중에 다시 찾아보세요",
+    "explore": "명소 둘러보기"
+  },
+  "settings": {
+    "title": "설정",
+    "subtitle": "앱 설정 관리",
+    "account": "계정",
+    "profile": "프로필",
+    "notifications": "알림",
+    "preferences": "환경설정",
+    "language": "언어",
+    "about": "정보",
+    "aboutApp": "앱 정보",
+    "privacy": "개인정보처리방침",
+    "help": "도움말"
+  },
   "home": {
     "hero": {
       "title": "K-Culture와 함께하는 한국 여행",
@@ -33,13 +66,33 @@
   },
   "spot": {
     "address": "주소",
+    "description": "설명",
+    "information": "정보",
     "hours": "운영시간",
     "phone": "전화번호",
     "website": "웹사이트",
     "relatedContent": "관련 콘텐츠",
     "howToGet": "가는 방법",
     "nearby": "주변 명소",
-    "tips": "방문 팁"
+    "tips": "꿀팁",
+    "mediaScene": "미디어 장면",
+    "pin": "저장하기",
+    "unpin": "저장 취소"
+  },
+  "contentDetail": {
+    "spots": "스팟",
+    "tours": "추천 코스",
+    "allSpots": "모든 스팟",
+    "allTours": "모든 코스",
+    "byOfficial": "by official"
+  },
+  "tour": {
+    "duration": "소요",
+    "startNavigation": "길안내 시작",
+    "openNavigation": "네비게이션 열기",
+    "totalDistance": "총 거리",
+    "travelTime": "이동 시간",
+    "spots": "스팟"
   },
   "footer": {
     "about": "K-Culture Spot 소개",
