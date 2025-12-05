@@ -1,9 +1,7 @@
-import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
-import { ArrowRight, MapPin, Star, TrendingUp } from 'lucide-react';
-import CategoryCard from '../components/CategoryCard';
-import SpotCard from '../components/SpotCard';
-import type { Spot, Category } from '../types';
+import { Tv, Music, Film } from 'lucide-react';
+import SpotCarousel from '../components/SpotCarousel';
+import type { Spot } from '../types';
 
 // Mock data for demo
 const mockFeaturedSpots: Spot[] = [
@@ -78,139 +76,231 @@ const mockFeaturedSpots: Spot[] = [
   },
   {
     id: 4,
-    name: '런닝맨 체험관',
-    nameEn: 'Running Man Experience Hall',
-    nameJa: 'ランニングマン体験館',
-    nameZh: 'Running Man体验馆',
-    description: 'SBS 인기 예능 런닝맨의 다양한 미션을 직접 체험할 수 있는 테마파크',
-    descriptionEn: 'Theme park where you can experience various missions from SBS Running Man',
-    descriptionJa: 'SBS人気バラエティ「ランニングマン」の様々なミッションを体験できるテーマパーク',
-    descriptionZh: '可以亲身体验SBS人气综艺Running Man各种任务的主题公园',
-    address: '서울특별시 종로구 인사동길 49',
-    addressEn: '49 Insadong-gil, Jongno-gu, Seoul',
-    latitude: 37.5740,
-    longitude: 126.9868,
-    category: 'variety',
-    imageUrl: 'https://images.unsplash.com/photo-1522869635100-9f4c5e86aa37?w=800',
+    name: '남산타워',
+    nameEn: 'N Seoul Tower',
+    nameJa: 'Nソウルタワー',
+    nameZh: 'N首尔塔',
+    description: '별에서 온 그대, 시티헌터 등 수많은 드라마의 로맨틱한 명소',
+    descriptionEn: 'Romantic landmark featured in dramas like My Love from the Star and City Hunter',
+    descriptionJa: '星から来たあなた、シティーハンターなど数多くのドラマのロマンチックな名所',
+    descriptionZh: '来自星星的你、城市猎人等众多电视剧的浪漫景点',
+    address: '서울특별시 용산구 남산공원길 105',
+    addressEn: '105 Namsangongwon-gil, Yongsan-gu, Seoul',
+    latitude: 37.5512,
+    longitude: 126.9882,
+    category: 'drama',
+    imageUrl: 'https://images.unsplash.com/photo-1583474800148-f63511178c87?w=800',
     images: [],
     relatedContent: [],
-    tags: ['런닝맨', 'SBS', '예능'],
-    viewCount: 12345,
+    tags: ['별에서 온 그대', '시티헌터', '남산'],
+    viewCount: 28000,
+    createdAt: '2024-01-01',
+    updatedAt: '2024-01-01',
+  },
+  {
+    id: 5,
+    name: '경복궁',
+    nameEn: 'Gyeongbokgung Palace',
+    nameJa: '景福宮',
+    nameZh: '景福宫',
+    description: '궁, 구르미 그린 달빛 등 사극 드라마의 대표 촬영지',
+    descriptionEn: 'Main filming location for historical dramas like The Palace and Moonlight',
+    descriptionJa: '宮、雲が描いた月明かりなど時代劇ドラマの代表撮影地',
+    descriptionZh: '宫、云画的月光等古装剧的代表拍摄地',
+    address: '서울특별시 종로구 사직로 161',
+    addressEn: '161 Sajik-ro, Jongno-gu, Seoul',
+    latitude: 37.5788,
+    longitude: 126.9770,
+    category: 'drama',
+    imageUrl: 'https://images.unsplash.com/photo-1582510003544-4d00b7f74220?w=800',
+    images: [],
+    relatedContent: [],
+    tags: ['궁', '사극', '전통'],
+    viewCount: 32000,
     createdAt: '2024-01-01',
     updatedAt: '2024-01-01',
   },
 ];
 
-const categories: Category[] = ['drama', 'kpop', 'movie', 'variety'];
+// Mock poster data for dashboard
+const mockPosters = [
+  {
+    id: 1,
+    title: '도깨비',
+    titleEn: 'Goblin',
+    category: 'drama',
+    imageUrl: 'https://images.unsplash.com/photo-1594908900066-3f47337549d8?w=400&h=600&fit=crop',
+  },
+  {
+    id: 2,
+    title: '사랑의 불시착',
+    titleEn: 'Crash Landing on You',
+    category: 'drama',
+    imageUrl: 'https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=400&h=600&fit=crop',
+  },
+  {
+    id: 3,
+    title: '오징어 게임',
+    titleEn: 'Squid Game',
+    category: 'drama',
+    imageUrl: 'https://images.unsplash.com/photo-1574267432644-f610f0ac8c99?w=400&h=600&fit=crop',
+  },
+  {
+    id: 4,
+    title: '기생충',
+    titleEn: 'Parasite',
+    category: 'movie',
+    imageUrl: 'https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=400&h=600&fit=crop',
+  },
+  {
+    id: 5,
+    title: '부산행',
+    titleEn: 'Train to Busan',
+    category: 'movie',
+    imageUrl: 'https://images.unsplash.com/photo-1478720568477-152d9b164e26?w=400&h=600&fit=crop',
+  },
+  {
+    id: 6,
+    title: '건축학개론',
+    titleEn: 'Architecture 101',
+    category: 'movie',
+    imageUrl: 'https://images.unsplash.com/photo-1582510003544-4d00b7f74220?w=400&h=600&fit=crop',
+  },
+  {
+    id: 7,
+    title: '이태원 클라쓰',
+    titleEn: 'Itaewon Class',
+    category: 'drama',
+    imageUrl: 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=400&h=600&fit=crop',
+  },
+  {
+    id: 8,
+    title: '경이로운 소문',
+    titleEn: 'The Uncanny Counter',
+    category: 'drama',
+    imageUrl: 'https://images.unsplash.com/photo-1514782831304-632d84503f6f?w=400&h=600&fit=crop',
+  },
+];
+
+const categoryButtons = [
+  {
+    id: 'drama',
+    label: 'K-Drama',
+    icon: Tv,
+    gradient: 'from-pink-400 to-rose-400',
+  },
+  {
+    id: 'kpop',
+    label: 'K-Pop',
+    icon: Music,
+    gradient: 'from-purple-400 to-violet-400',
+  },
+  {
+    id: 'movie',
+    label: 'K-Movie',
+    icon: Film,
+    gradient: 'from-blue-400 to-cyan-400',
+  },
+];
 
 export default function Home() {
-  const { t } = useTranslation();
-
   return (
-    <div className="min-h-screen">
-      {/* Hero Section */}
-      <section className="relative h-[70vh] min-h-[500px] flex items-center justify-center overflow-hidden">
-        {/* Background Image */}
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{
-            backgroundImage: 'url(https://images.unsplash.com/photo-1538485399081-7191377e8241?w=1920)',
-          }}
-        >
-          <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/60" />
-        </div>
+    <div className="min-h-screen bg-neutral-50">
+      {/* Carousel Section - Featured Spots */}
+      <SpotCarousel spots={mockFeaturedSpots} />
 
-        {/* Hero Content */}
-        <div className="relative z-10 text-center text-white px-4 max-w-4xl mx-auto">
-          <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
-            {t('home.hero.title')}
-          </h1>
-          <p className="text-lg md:text-xl text-gray-200 mb-8">
-            {t('home.hero.subtitle')}
-          </p>
-          <Link
-            to="/spots"
-            className="inline-flex items-center gap-2 bg-gradient-to-r from-pink-500 to-purple-600 text-white px-8 py-4 rounded-full font-semibold hover:from-pink-600 hover:to-purple-700 transition-all shadow-lg hover:shadow-xl"
-          >
-            {t('common.viewMore')}
-            <ArrowRight className="w-5 h-5" />
-          </Link>
-        </div>
-
-        {/* Floating Stats */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-8 md:gap-16">
-          <div className="text-center text-white">
-            <div className="flex items-center justify-center gap-1 text-2xl md:text-3xl font-bold">
-              <MapPin className="w-6 h-6" />
-              500+
-            </div>
-            <div className="text-sm text-gray-300">Spots</div>
-          </div>
-          <div className="text-center text-white">
-            <div className="flex items-center justify-center gap-1 text-2xl md:text-3xl font-bold">
-              <Star className="w-6 h-6" />
-              4.8
-            </div>
-            <div className="text-sm text-gray-300">Rating</div>
-          </div>
-          <div className="text-center text-white">
-            <div className="flex items-center justify-center gap-1 text-2xl md:text-3xl font-bold">
-              <TrendingUp className="w-6 h-6" />
-              100K+
-            </div>
-            <div className="text-sm text-gray-300">Visitors</div>
-          </div>
-        </div>
-      </section>
-
-      {/* Categories Section */}
-      <section className="py-16 px-4 bg-gray-50">
+      {/* Category Buttons Section */}
+      <section className="py-12 px-4 bg-white">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-3xl font-bold text-center mb-10">{t('home.categories')}</h2>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
-            {categories.map((category) => (
-              <CategoryCard key={category} category={category} />
-            ))}
+          <h2 className="text-2xl md:text-3xl font-bold text-center mb-8 text-gray-800">
+            카테고리 둘러보기
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-4xl mx-auto">
+            {categoryButtons.map((category) => {
+              const Icon = category.icon;
+              return (
+                <Link
+                  key={category.id}
+                  to={`/category/${category.id}`}
+                  className="group relative overflow-hidden rounded-2xl p-8 bg-gradient-to-br from-white to-gray-50 border-2 border-gray-100 hover:border-transparent hover:shadow-xl transition-all duration-300"
+                >
+                  <div className={`absolute inset-0 bg-gradient-to-br ${category.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-300`} />
+                  <div className="relative flex flex-col items-center gap-3">
+                    <div className={`p-4 rounded-full bg-gradient-to-br ${category.gradient} text-white shadow-lg group-hover:scale-110 transition-transform duration-300`}>
+                      <Icon className="w-8 h-8" />
+                    </div>
+                    <h3 className="text-xl font-bold text-gray-800 group-hover:text-gray-900">
+                      {category.label}
+                    </h3>
+                  </div>
+                </Link>
+              );
+            })}
           </div>
         </div>
       </section>
 
-      {/* Featured Spots Section */}
-      <section className="py-16 px-4">
+      {/* Poster Dashboard Section */}
+      <section className="py-16 px-4 bg-gradient-to-b from-white to-gray-50">
         <div className="max-w-7xl mx-auto">
           <div className="flex items-center justify-between mb-10">
-            <h2 className="text-3xl font-bold">{t('home.featured')}</h2>
+            <h2 className="text-2xl md:text-3xl font-bold text-gray-800">
+              인기 드라마 & 영화
+            </h2>
             <Link
               to="/spots"
-              className="flex items-center gap-1 text-pink-500 hover:text-pink-600 font-medium"
+              className="text-pink-500 hover:text-pink-600 font-medium flex items-center gap-1 group"
             >
-              {t('common.viewMore')}
-              <ArrowRight className="w-4 h-4" />
+              전체보기
+              <span className="group-hover:translate-x-1 transition-transform">→</span>
             </Link>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {mockFeaturedSpots.map((spot) => (
-              <SpotCard key={spot.id} spot={spot} />
+
+          {/* Poster Grid */}
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-4 md:gap-6">
+            {mockPosters.map((poster) => (
+              <Link
+                key={poster.id}
+                to={`/category/${poster.category}`}
+                className="group relative aspect-[2/3] rounded-xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300"
+              >
+                <img
+                  src={poster.imageUrl}
+                  alt={poster.title}
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <div className="absolute bottom-0 left-0 right-0 p-4">
+                    <h3 className="text-white font-bold text-lg mb-1">{poster.title}</h3>
+                    <p className="text-white/80 text-sm">{poster.titleEn}</p>
+                  </div>
+                </div>
+                {/* Category Badge */}
+                <div className="absolute top-3 right-3">
+                  <span className="px-3 py-1 bg-white/90 backdrop-blur-sm rounded-full text-xs font-semibold text-gray-700 capitalize">
+                    {poster.category}
+                  </span>
+                </div>
+              </Link>
             ))}
           </div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 px-4 bg-gradient-to-r from-pink-500 to-purple-600">
+      <section className="py-20 px-4 bg-gradient-to-br from-pink-400 via-purple-400 to-blue-400">
         <div className="max-w-4xl mx-auto text-center text-white">
           <h2 className="text-3xl md:text-4xl font-bold mb-6">
-            Start Your K-Culture Journey Today
+            K-Culture 여행을 시작하세요
           </h2>
-          <p className="text-lg text-pink-100 mb-8">
-            Discover the filming locations of your favorite dramas and the footsteps of K-POP stars
+          <p className="text-lg text-white/90 mb-8 max-w-2xl mx-auto">
+            좋아하는 드라마와 영화의 촬영지를 직접 방문하고, K-POP 스타들의 발자취를 따라가보세요
           </p>
           <Link
             to="/spots"
-            className="inline-flex items-center gap-2 bg-white text-pink-600 px-8 py-4 rounded-full font-semibold hover:bg-gray-100 transition-all shadow-lg"
+            className="inline-flex items-center gap-2 bg-white text-purple-600 px-8 py-4 rounded-full font-bold hover:bg-gray-100 transition-all shadow-lg hover:shadow-xl hover:scale-105"
           >
-            Explore All Spots
-            <ArrowRight className="w-5 h-5" />
+            모든 스팟 둘러보기
           </Link>
         </div>
       </section>
