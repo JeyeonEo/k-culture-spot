@@ -1,5 +1,5 @@
 # ===========================================
-# K-Culture-Spot Dockerfile (Security Hardened)
+# HypeSpot Dockerfile (Security Hardened)
 # ===========================================
 
 # Python 3.11 기반 이미지 사용

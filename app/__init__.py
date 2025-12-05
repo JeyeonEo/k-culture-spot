@@ -1,1 +1,1 @@
-"""K-Culture-Spot Application Package."""
+"""HypeSpot Application Package."""
