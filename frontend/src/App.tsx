@@ -15,6 +15,7 @@ import ContentDetail from './pages/ContentDetail';
 import ContentSpotsList from './pages/ContentSpotsList';
 import ContentToursList from './pages/ContentToursList';
 import TourDetail from './pages/TourDetail';
+import Thanks from './pages/Thanks';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -45,6 +46,7 @@ export default function App() {
               <Route path="/community" element={<Community />} />
               <Route path="/favorites" element={<Favorites />} />
               <Route path="/settings" element={<Settings />} />
+              <Route path="/thanks" element={<Thanks />} />
             </Routes>
           </main>
           <Footer />
