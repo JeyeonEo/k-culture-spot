@@ -15,6 +15,11 @@ import ContentDetail from './pages/ContentDetail';
 import ContentSpotsList from './pages/ContentSpotsList';
 import ContentToursList from './pages/ContentToursList';
 import TourDetail from './pages/TourDetail';
+import AdminDashboard from './pages/admin/AdminDashboard';
+import AdminContents from './pages/admin/AdminContents';
+import AdminContentForm from './pages/admin/AdminContentForm';
+import AdminTours from './pages/admin/AdminTours';
+import AdminTourForm from './pages/admin/AdminTourForm';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -45,6 +50,13 @@ export default function App() {
               <Route path="/community" element={<Community />} />
               <Route path="/favorites" element={<Favorites />} />
               <Route path="/settings" element={<Settings />} />
+
+              {/* Admin Routes */}
+              <Route path="/admin" element={<AdminDashboard />} />
+              <Route path="/admin/contents" element={<AdminContents />} />
+              <Route path="/admin/contents/:id" element={<AdminContentForm />} />
+              <Route path="/admin/tours" element={<AdminTours />} />
+              <Route path="/admin/tours/:id" element={<AdminTourForm />} />
             </Routes>
           </main>
           <Footer />
