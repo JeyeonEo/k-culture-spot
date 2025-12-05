@@ -60,6 +60,11 @@ export default function Footer() {
                   {t('footer.privacy')}
                 </a>
               </li>
+              <li>
+                <Link to="/thanks" className="text-gray-400 hover:text-pink-400 text-sm transition-colors">
+                  {t('footer.thanksTo')}
+                </Link>
+              </li>
             </ul>
           </div>
         </div>

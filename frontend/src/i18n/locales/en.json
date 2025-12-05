@@ -101,6 +101,15 @@
     "contact": "Contact Us",
     "terms": "Terms of Service",
     "privacy": "Privacy Policy",
+    "thanksTo": "Thanks to",
     "copyright": "© 2024 HypeSpot. All rights reserved."
+  },
+  "thanks": {
+    "title": "Why We Built HypeSpot",
+    "story1": "This service started from a trip to Fukui, Japan, where we went with friends to see Maeda Riku from NCT WISH.",
+    "highlight": "\"We wanted to follow in our favorite artist's footsteps, but the information was so fragmented.\"",
+    "story2": "Gathering scattered information from everywhere was really exhausting. SNS, blogs, fan cafes... There was plenty of information, but nowhere to find it all in one place.",
+    "story3": "That's when we thought: Let's create a service where all fans can easily find pilgrimage information. And that's how HypeSpot was born.",
+    "signature": "— The HypeSpot Team"
   }
 }

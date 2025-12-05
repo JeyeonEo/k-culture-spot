@@ -101,6 +101,15 @@
     "contact": "문의하기",
     "terms": "이용약관",
     "privacy": "개인정보처리방침",
+    "thanksTo": "Thanks to",
     "copyright": "© 2024 HypeSpot. All rights reserved."
+  },
+  "thanks": {
+    "title": "HypeSpot을 만들게 된 이유",
+    "story1": "이 서비스는 친구들과 함께 NCT WISH의 마에다 리쿠를 보러 일본 후쿠이까지 갔던 여행에서 시작되었습니다.",
+    "highlight": "\"좋아하는 아티스트의 발자취를 따라가고 싶은데, 정보가 너무 파편화되어 있었어요.\"",
+    "story2": "여기저기 흩어진 정보들을 하나하나 모으는 것이 정말 힘들었습니다. SNS, 블로그, 팬카페... 정보는 많았지만 한곳에서 볼 수 있는 곳은 없었죠.",
+    "story3": "그래서 생각했습니다. 덕질하는 모든 분들이 쉽게 성지순례 정보를 찾을 수 있는 서비스를 만들자고요. HypeSpot은 그렇게 탄생했습니다.",
+    "signature": "— HypeSpot 개발팀"
   }
 }
