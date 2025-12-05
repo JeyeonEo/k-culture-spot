@@ -16,6 +16,39 @@
     "movie": "映画",
     "all": "すべてのスポット"
   },
+  "bottomNav": {
+    "explore": "探索",
+    "community": "コミュニティ",
+    "favorites": "お気に入り",
+    "settings": "設定"
+  },
+  "community": {
+    "title": "コミュニティ",
+    "subtitle": "K-Cultureファンと交流しよう",
+    "createPost": "ストーリーを共有",
+    "comingSoon": "より多くの機能が近日公開"
+  },
+  "favorites": {
+    "title": "お気に入り",
+    "subtitle": "保存したスポットを表示",
+    "saved": "保存日",
+    "empty": "保存されたスポットはまだありません",
+    "emptyDesc": "お気に入りのスポットを保存して後で探しましょう",
+    "explore": "スポットを探索"
+  },
+  "settings": {
+    "title": "設定",
+    "subtitle": "アプリの設定を管理",
+    "account": "アカウント",
+    "profile": "プロフィール",
+    "notifications": "通知",
+    "preferences": "環境設定",
+    "language": "言語",
+    "about": "情報",
+    "aboutApp": "アプリについて",
+    "privacy": "プライバシーポリシー",
+    "help": "ヘルプ"
+  },
   "home": {
     "hero": {
       "title": "K-Cultureと一緒に韓国旅行",

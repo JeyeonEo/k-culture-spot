@@ -16,6 +16,39 @@
     "movie": "Movie",
     "all": "All Spots"
   },
+  "bottomNav": {
+    "explore": "Explore",
+    "community": "Community",
+    "favorites": "Favorites",
+    "settings": "Settings"
+  },
+  "community": {
+    "title": "Community",
+    "subtitle": "Connect with K-culture fans",
+    "createPost": "Share your story",
+    "comingSoon": "More features coming soon"
+  },
+  "favorites": {
+    "title": "Favorites",
+    "subtitle": "View your saved spots",
+    "saved": "Saved on",
+    "empty": "No saved spots yet",
+    "emptyDesc": "Save your favorite spots and find them here later",
+    "explore": "Explore Spots"
+  },
+  "settings": {
+    "title": "Settings",
+    "subtitle": "Manage your app settings",
+    "account": "Account",
+    "profile": "Profile",
+    "notifications": "Notifications",
+    "preferences": "Preferences",
+    "language": "Language",
+    "about": "About",
+    "aboutApp": "About App",
+    "privacy": "Privacy Policy",
+    "help": "Help"
+  },
   "home": {
     "hero": {
       "title": "Explore Korea with K-Culture",

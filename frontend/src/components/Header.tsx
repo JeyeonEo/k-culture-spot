@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { Search, Menu, X } from 'lucide-react';
+import { Search, Menu, X, Compass, Users, Heart, Settings } from 'lucide-react';
 import LanguageSelector from './LanguageSelector';
 
 export default function Header() {
@@ -24,6 +24,13 @@ export default function Header() {
     { to: '/category/kpop', label: t('nav.kpop') },
     { to: '/category/movie', label: t('nav.movie') },
     { to: '/spots', label: t('nav.all') },
+  ];
+
+  const bottomNavItems = [
+    { to: '/', label: t('bottomNav.explore'), icon: Compass },
+    { to: '/community', label: t('bottomNav.community'), icon: Users },
+    { to: '/favorites', label: t('bottomNav.favorites'), icon: Heart },
+    { to: '/settings', label: t('bottomNav.settings'), icon: Settings },
   ];
 
   return (
@@ -108,6 +115,24 @@ export default function Header() {
                 </Link>
               ))}
             </nav>
+            <div className="px-4 mb-6 border-t border-gray-100 pt-6">
+              <nav className="grid grid-cols-2 gap-3">
+                {bottomNavItems.map((item) => {
+                  const Icon = item.icon;
+                  return (
+                    <Link
+                      key={item.to}
+                      to={item.to}
+                      onClick={() => setIsMenuOpen(false)}
+                      className="flex items-center gap-3 px-4 py-3 text-gray-700 hover:bg-gradient-to-r hover:from-pink-50 hover:to-purple-50 hover:text-pink-600 rounded-xl transition-all font-medium border border-gray-200"
+                    >
+                      <Icon className="w-5 h-5" />
+                      <span>{item.label}</span>
+                    </Link>
+                  );
+                })}
+              </nav>
+            </div>
             <div className="px-4 pt-4 border-t border-gray-100">
               <LanguageSelector />
             </div>
