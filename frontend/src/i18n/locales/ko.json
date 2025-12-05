@@ -44,6 +44,10 @@
     "notifications": "알림",
     "preferences": "환경설정",
     "language": "언어",
+    "mapProvider": "지도 앱",
+    "mapProviderDesc": "위치 보기에 사용할 지도 앱을 선택하세요",
+    "googleMaps": "구글 지도",
+    "naverMaps": "네이버 지도",
     "about": "정보",
     "aboutApp": "앱 정보",
     "privacy": "개인정보처리방침",
@@ -72,7 +76,18 @@
     "relatedContent": "관련 콘텐츠",
     "howToGet": "가는 방법",
     "nearby": "주변 명소",
-    "tips": "방문 팁"
+    "tips": "방문 팁",
+    "openMap": "지도 열기"
+  },
+  "route": {
+    "title": "여행 코스",
+    "subtitle": "추천 여행 경로를 따라가보세요",
+    "totalDuration": "총 소요시간",
+    "totalDistance": "총 거리",
+    "stop": "정류장",
+    "duration": "소요 시간",
+    "distance": "거리",
+    "viewRoute": "코스 보기"
   },
   "footer": {
     "about": "K-Culture Spot 소개",
