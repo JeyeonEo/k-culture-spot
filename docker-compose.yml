@@ -29,12 +29,18 @@ services:
 
   # React 프론트엔드
   frontend:
-    build:
-      context: ./frontend
-      dockerfile: Dockerfile
+    # 개발 환경: node 이미지 직접 사용 (빌드 없이)
+    image: node:20-alpine
     container_name: k-culture-spot-frontend
+    working_dir: /app
     expose:
-      - "80"
+      - "5173"
+    # 개발 환경: 소스 코드 볼륨 마운트 및 Vite dev server 사용
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    # 개발 환경: Vite dev server 실행
+    command: sh -c "npm install && npm run dev -- --host 0.0.0.0 --port 5173"
     depends_on:
       - app
     restart: unless-stopped
@@ -59,6 +65,8 @@ services:
       - DEBUG=false
       - DATABASE_URL=postgresql+asyncpg://postgres:${DB_PASSWORD:-postgres}@db:5432/k_culture_spot
       - REDIS_URL=redis://redis:6379/0
+    # 개발 환경: 코드 변경 시 자동 리로드
+    command: python -m uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload --reload-dir /app
     depends_on:
       db:
         condition: service_healthy
