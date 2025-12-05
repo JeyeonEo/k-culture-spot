@@ -11,6 +11,7 @@ import {
   Navigation,
 } from 'lucide-react';
 import type { Spot } from '../types';
+import { openMap } from '../utils/map';
 
 // Mock data
 const mockSpot: Spot = {
@@ -236,15 +237,13 @@ export default function SpotDetail() {
             </div>
 
             {/* Map / Directions Button */}
-            <a
-              href={`https://map.kakao.com/link/to/${encodeURIComponent(spot.name)},${spot.latitude},${spot.longitude}`}
-              target="_blank"
-              rel="noopener noreferrer"
+            <button
+              onClick={() => openMap(spot.latitude, spot.longitude, getName())}
               className="flex items-center justify-center gap-2 w-full bg-gradient-to-r from-pink-500 to-purple-600 text-white py-4 rounded-xl font-semibold hover:from-pink-600 hover:to-purple-700 transition-all"
             >
               <Navigation className="w-5 h-5" />
-              {t('spot.howToGet')}
-            </a>
+              {t('spot.openMap')}
+            </button>
 
             {/* Tags */}
             <div className="bg-white rounded-xl p-6 shadow-sm">
