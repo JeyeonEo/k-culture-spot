@@ -1,5 +1,5 @@
 import axios from 'axios';
-import type { Spot, SpotListResponse, SearchParams } from '../types';
+import type { Spot, SpotListResponse, SearchParams, Content } from '../types';
 
 const api = axios.create({
   baseURL: '/api',
@@ -38,6 +38,23 @@ export const spotApi = {
     const { data } = await api.get('/spots/search', {
       params: { q: query },
     });
+    return data;
+  },
+};
+
+export const contentApi = {
+  getContents: async (): Promise<Content[]> => {
+    const { data } = await api.get('/contents');
+    return data;
+  },
+
+  getFeaturedContents: async (): Promise<Content[]> => {
+    const { data } = await api.get('/contents/featured');
+    return data;
+  },
+
+  getContentById: async (id: number): Promise<Content> => {
+    const { data } = await api.get(`/contents/${id}`);
     return data;
   },
 };

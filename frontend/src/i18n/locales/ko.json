@@ -56,7 +56,8 @@
     },
     "featured": "추천 명소",
     "popular": "인기 명소",
-    "categories": "카테고리"
+    "categories": "카테고리",
+    "contentCarousel": "인기 작품 & 아티스트"
   },
   "category": {
     "drama": "드라마 촬영지",

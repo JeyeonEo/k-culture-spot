@@ -56,7 +56,8 @@
     },
     "featured": "Featured Spots",
     "popular": "Popular Spots",
-    "categories": "Categories"
+    "categories": "Categories",
+    "contentCarousel": "Popular Content & Artists"
   },
   "category": {
     "drama": "Drama Locations",
