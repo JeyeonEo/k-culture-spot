@@ -109,22 +109,43 @@ export default function Home() {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-20 px-4 bg-gradient-to-r from-pink-500 to-purple-600">
-        <div className="max-w-4xl mx-auto text-center text-white">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">
-            Start Your K-Culture Journey Today
-          </h2>
-          <p className="text-lg text-pink-100 mb-8">
-            Discover the filming locations of your favorite dramas and the footsteps of K-POP stars
-          </p>
-          <Link
-            to="/spots"
-            className="inline-flex items-center gap-2 bg-white text-pink-600 px-8 py-4 rounded-full font-semibold hover:bg-gray-100 transition-all shadow-lg"
-          >
-            Explore All Spots
-            <ArrowRight className="w-5 h-5" />
-          </Link>
+      {/* Trending Courses Section */}
+      <section className="py-16 px-4 bg-gray-50">
+        <div className="max-w-7xl mx-auto">
+          <h2 className="text-3xl font-bold text-center mb-10">Trending Courses</h2>
+          <div className="space-y-4">
+            {[
+              { rank: 1, title: 'K-Drama Filming Locations Tour', category: 'Drama', students: 2847 },
+              { rank: 2, title: 'K-Pop Idol Experience', category: 'K-Pop', students: 2356 },
+              { rank: 3, title: 'Korean Traditional Culture Workshop', category: 'Culture', students: 1924 },
+              { rank: 4, title: 'Seoul Street Food Adventure', category: 'Food', students: 1785 },
+              { rank: 5, title: 'K-Beauty & Fashion Guide', category: 'Beauty', students: 1642 },
+            ].map((course) => (
+              <div
+                key={course.rank}
+                className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow p-6 flex items-center gap-6"
+              >
+                <div className="flex-shrink-0 w-16 h-16 bg-gradient-to-r from-pink-500 to-purple-600 rounded-full flex items-center justify-center">
+                  <span className="text-white text-2xl font-bold">#{course.rank}</span>
+                </div>
+                <div className="flex-grow">
+                  <h3 className="text-xl font-semibold text-gray-900 mb-1">{course.title}</h3>
+                  <div className="flex items-center gap-4 text-sm text-gray-600">
+                    <span className="px-3 py-1 bg-pink-100 text-pink-600 rounded-full font-medium">
+                      {course.category}
+                    </span>
+                    <span>{course.students.toLocaleString()} students enrolled</span>
+                  </div>
+                </div>
+                <Link
+                  to="/spots"
+                  className="flex-shrink-0 bg-pink-500 hover:bg-pink-600 text-white px-6 py-3 rounded-full font-semibold transition-colors"
+                >
+                  Enroll Now
+                </Link>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
     </div>
