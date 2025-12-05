@@ -22,6 +22,7 @@ class SecuritySettings(BaseSettings):
         env_file=".env",
         env_file_encoding="utf-8",
         case_sensitive=False,
+        extra="ignore",
         json_schema_extra={
             "cors_origins": {"json_schema_extra": {"json_encoders": {list: lambda v: v}}}
         },
