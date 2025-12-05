@@ -24,7 +24,7 @@
   },
   "community": {
     "title": "Community",
-    "subtitle": "Connect with K-culture fans",
+    "subtitle": "Connect with HypeSpot fans",
     "createPost": "Share your story",
     "comingSoon": "More features coming soon"
   },
@@ -51,12 +51,13 @@
   },
   "home": {
     "hero": {
-      "title": "Explore Korea with K-Culture",
+      "title": "Explore Korea with HypeSpot",
       "subtitle": "Follow the footsteps of your favorite dramas and K-POP stars"
     },
     "featured": "Featured Spots",
     "popular": "Popular Spots",
-    "categories": "Categories"
+    "categories": "Categories",
+    "contentCarousel": "Popular Content & Artists"
   },
   "category": {
     "drama": "Drama Locations",
@@ -95,11 +96,11 @@
     "spots": "Spots"
   },
   "footer": {
-    "about": "About K-Culture Spot",
-    "aboutText": "K-Culture Spot introduces Korean tourist attractions related to Hallyu content.",
+    "about": "About HypeSpot",
+    "aboutText": "HypeSpot introduces Korean tourist attractions related to Hallyu content.",
     "contact": "Contact Us",
     "terms": "Terms of Service",
     "privacy": "Privacy Policy",
-    "copyright": "© 2024 K-Culture Spot. All rights reserved."
+    "copyright": "© 2024 HypeSpot. All rights reserved."
   }
 }

@@ -24,7 +24,7 @@
   },
   "community": {
     "title": "コミュニティ",
-    "subtitle": "K-Cultureファンと交流しよう",
+    "subtitle": "HypeSpotファンと交流しよう",
     "createPost": "ストーリーを共有",
     "comingSoon": "より多くの機能が近日公開"
   },
@@ -51,12 +51,13 @@
   },
   "home": {
     "hero": {
-      "title": "K-Cultureと一緒に韓国旅行",
+      "title": "HypeSpotと一緒に韓国旅行",
       "subtitle": "お気に入りのドラマやK-POPスターの足跡をたどってみましょう"
     },
     "featured": "おすすめスポット",
     "popular": "人気スポット",
-    "categories": "カテゴリー"
+    "categories": "カテゴリー",
+    "contentCarousel": "人気作品 & アーティスト"
   },
   "category": {
     "drama": "ドラマロケ地",
@@ -95,11 +96,11 @@
     "spots": "スポット"
   },
   "footer": {
-    "about": "K-Culture Spotについて",
-    "aboutText": "K-Culture Spotは韓流コンテンツに関連した韓国の観光スポットを紹介するサービスです。",
+    "about": "HypeSpotについて",
+    "aboutText": "HypeSpotは韓流コンテンツに関連した韓国の観光スポットを紹介するサービスです。",
     "contact": "お問い合わせ",
     "terms": "利用規約",
     "privacy": "プライバシーポリシー",
-    "copyright": "© 2024 K-Culture Spot. All rights reserved."
+    "copyright": "© 2024 HypeSpot. All rights reserved."
   }
 }

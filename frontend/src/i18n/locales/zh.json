@@ -51,12 +51,13 @@
   },
   "home": {
     "hero": {
-      "title": "与K-Culture一起探索韩国",
+      "title": "与HypeSpot一起探索韩国",
       "subtitle": "追随您喜爱的电视剧和K-POP明星的足迹"
     },
     "featured": "推荐景点",
     "popular": "热门景点",
-    "categories": "分类"
+    "categories": "分类",
+    "contentCarousel": "热门作品 & 艺人"
   },
   "category": {
     "drama": "电视剧拍摄地",
@@ -95,11 +96,11 @@
     "spots": "景点"
   },
   "footer": {
-    "about": "关于K-Culture Spot",
-    "aboutText": "K-Culture Spot是介绍与韩流内容相关的韩国旅游景点的服务。",
+    "about": "关于HypeSpot",
+    "aboutText": "HypeSpot是介绍与韩流内容相关的韩国旅游景点的服务。",
     "contact": "联系我们",
     "terms": "服务条款",
     "privacy": "隐私政策",
-    "copyright": "© 2024 K-Culture Spot. 保留所有权利。"
+    "copyright": "© 2024 HypeSpot. 保留所有权利。"
   }
 }

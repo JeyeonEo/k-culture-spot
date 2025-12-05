@@ -109,7 +109,7 @@ class DatabaseSettings(BaseSettings):
     """Database connection settings."""
 
     database_url: str = Field(
-        default="postgresql+asyncpg://postgres:postgres@localhost:5432/k_culture_spot",
+        default="postgresql+asyncpg://postgres:postgres@localhost:5432/hypespot",
         description="Database connection URL",
     )
 
@@ -162,7 +162,7 @@ class Settings(BaseSettings):
     )
 
     # Application
-    app_name: str = "K-Culture-Spot"
+    app_name: str = "HypeSpot"
     app_version: str = "0.1.0"
     environment: Literal["development", "staging", "production"] = "development"
     debug: bool = False

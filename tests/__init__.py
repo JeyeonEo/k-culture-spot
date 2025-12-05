@@ -1,1 +1,1 @@
-"""Test suite for k-culture-spot application."""
+"""Test suite for HypeSpot application."""

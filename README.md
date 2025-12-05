@@ -1,4 +1,4 @@
-# K-Culture Spot 🇰🇷
+# HypeSpot 🇰🇷
 
 K-Culture 관련 한국 관광 명소 안내 서비스 - 외국인 관광객을 위한 드라마, K-POP, 영화 촬영지 정보 제공
 
@@ -60,7 +60,7 @@ docker compose down
 
 ```bash
 # Backend
-cd /home/user/k-culture-spot
+cd /home/user/hypespot
 python -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
@@ -85,7 +85,7 @@ npm run dev
 ## 프로젝트 구조
 
 ```
-k-culture-spot/
+hypespot/
 ├── frontend/               # React 프론트엔드
 │   ├── src/
 │   │   ├── components/    # 재사용 컴포넌트

@@ -51,12 +51,13 @@
   },
   "home": {
     "hero": {
-      "title": "K-culture 성지순례 가이드",
+      "title": "HypeSpot 성지순례 가이드",
       "subtitle": "좋아하는 드라마와 K-POP 스타의 발자취를 따라가보세요"
     },
     "featured": "추천 명소",
     "popular": "인기 명소",
-    "categories": "카테고리"
+    "categories": "카테고리",
+    "contentCarousel": "인기 작품 & 아티스트"
   },
   "category": {
     "drama": "드라마 촬영지",
@@ -95,11 +96,11 @@
     "spots": "스팟"
   },
   "footer": {
-    "about": "K-Culture Spot 소개",
-    "aboutText": "K-Culture Spot은 한류 콘텐츠와 관련된 한국 관광 명소를 소개하는 서비스입니다.",
+    "about": "HypeSpot 소개",
+    "aboutText": "HypeSpot은 한류 콘텐츠와 관련된 한국 관광 명소를 소개하는 서비스입니다.",
     "contact": "문의하기",
     "terms": "이용약관",
     "privacy": "개인정보처리방침",
-    "copyright": "© 2024 K-Culture Spot. All rights reserved."
+    "copyright": "© 2024 HypeSpot. All rights reserved."
   }
 }

@@ -12,7 +12,7 @@ export default function Footer() {
           <div>
             <h3 className="text-lg font-bold mb-4 flex items-center gap-2">
               <span>🇰🇷</span>
-              K-Culture Spot
+              HypeSpot
             </h3>
             <p className="text-gray-400 text-sm leading-relaxed">
               {t('footer.aboutText')}
