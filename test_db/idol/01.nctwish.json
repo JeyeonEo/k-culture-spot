@@ -1,0 +1,46 @@
+{
+  "name": "SM타운 코엑스아티움 (NCT WISH 관련 스팟)",
+  "description": "SM엔터테인먼트의 공식 문화 공간으로, NCT WISH를 포함한 SM 아티스트들의 전시, 팝업 스토어, 팬 이벤트가 열리는 곳입니다. NCT WISH의 앨범, 굿즈, 포토카드 등을 구매할 수 있으며, 아티스트 관련 전시를 관람할 수 있습니다. K-pop 팬들의 필수 방문지입니다.",
+  "name_en": "SMTOWN COEX Artium (NCT WISH Related Spot)",
+  "description_en": "SM Entertainment's official cultural space where exhibitions, pop-up stores, and fan events for SM artists including NCT WISH are held. You can purchase NCT WISH albums, goods, and photocards, and view artist-related exhibitions. A must-visit destination for K-pop fans.",
+  "name_ja": "SMTOWN COEX Artium（NCT WISH関連スポット）",
+  "description_ja": "SMエンターテインメントの公式文化空間で、NCT WISHを含むSMアーティストの展示、ポップアップストア、ファンイベントが開催される場所です。NCT WISHのアルバム、グッズ、フォトカードなどを購入でき、アーティスト関連の展示を観覧できます。K-popファンの必須訪問地です。",
+  "name_zh": "SMTOWN COEX Artium（NCT WISH相关景点）",
+  "description_zh": "SM娱乐的官方文化空间，举办包括NCT WISH在内的SM艺人展览、快闪店和粉丝活动。可以购买NCT WISH的专辑、周边和照片卡，并观看艺人相关展览。K-pop粉丝的必访地。",
+  "address": "서울특별시 강남구 영동대로 513 코엑스 아티움 6층",
+  "address_en": "6F COEX Artium, 513 Yeongdong-daero, Gangnam-gu, Seoul",
+  "latitude": 37.5125,
+  "longitude": 127.0588,
+  "category": "kpop",
+  "image_url": "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=800",
+  "images": [
+    "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=800",
+    "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=800",
+    "https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=800"
+  ],
+  "phone": "02-6002-6600",
+  "website": "https://www.smtown.com",
+  "hours": "매일 10:00-21:00",
+  "tags": ["NCT WISH", "엔시티 위시", "K-pop", "아이돌", "SM엔터테인먼트", "SM타운", "코엑스", "팝업스토어", "굿즈"],
+  "content_id": "kpop_nct_wish_001",
+  "related_contents": [
+    {
+      "title": "NCT WISH",
+      "title_en": "NCT WISH",
+      "title_ja": "NCT WISH",
+      "title_zh": "NCT WISH",
+      "content_type": "music",
+      "year": 2024,
+      "image_url": "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=400"
+    },
+    {
+      "title": "SONIC BOOM",
+      "title_en": "SONIC BOOM",
+      "title_ja": "SONIC BOOM",
+      "title_zh": "SONIC BOOM",
+      "content_type": "music",
+      "year": 2024,
+      "image_url": "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=400"
+    }
+  ]
+}
