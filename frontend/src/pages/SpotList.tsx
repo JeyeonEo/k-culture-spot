@@ -27,7 +27,7 @@ export default function SpotList() {
       try {
         setLoading(true);
         if (selectedCategory === 'all') {
-          const response = await spotApi.getSpots({ page, page_size: 20 });
+          const response = await spotApi.getSpots({ page, pageSize: 20 });
           setSpots(response.spots);
           setTotal(response.total);
         } else {

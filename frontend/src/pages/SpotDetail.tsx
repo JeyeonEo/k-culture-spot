@@ -152,9 +152,6 @@ export default function SpotDetail() {
   };
 
   const handleImageClick = (index: number, isMediaImage: boolean = false) => {
-    const allImages = spot.mediaImage
-      ? [spot.mediaImage, ...spot.images]
-      : spot.images;
     setCurrentImageIndex(isMediaImage ? 0 : (spot.mediaImage ? index + 1 : index));
     setModalOpen(true);
   };

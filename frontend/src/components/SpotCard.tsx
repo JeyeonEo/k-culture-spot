@@ -67,7 +67,7 @@ export default function SpotCard({ spot }: SpotCardProps) {
           </span>
           <span className="flex items-center gap-1">
             <Eye className="w-4 h-4" />
-            {spot.viewCount.toLocaleString()}
+            {(spot.viewCount || 0).toLocaleString()}
           </span>
         </div>
       </div>

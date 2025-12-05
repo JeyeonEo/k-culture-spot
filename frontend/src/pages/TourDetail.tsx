@@ -145,7 +145,7 @@ const mockTour: Tour = {
 };
 
 // Get icon for spot category
-const getSpotIcon = (category: string, index: number) => {
+const getSpotIcon = (_category: string, index: number) => {
   const icons = [Coffee, TreePine, Camera, Utensils, Building];
   const IconComponent = icons[index % icons.length];
   return <IconComponent className="w-4 h-4" />;
