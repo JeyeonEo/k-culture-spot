@@ -4,30 +4,36 @@ import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import CategoryCard from '../components/CategoryCard';
 import SpotCard from '../components/SpotCard';
-import { spotApi } from '../api/client';
-import type { Spot, Category } from '../types';
+import ContentCarousel from '../components/ContentCarousel';
+import { spotApi, contentApi } from '../api/client';
+import type { Spot, Category, Content } from '../types';
 
 const categories: Category[] = ['drama', 'kpop', 'movie', 'variety'];
 
 export default function Home() {
   const { t } = useTranslation();
   const [featuredSpots, setFeaturedSpots] = useState<Spot[]>([]);
+  const [featuredContents, setFeaturedContents] = useState<Content[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const loadFeaturedSpots = async () => {
+    const loadData = async () => {
       try {
         setLoading(true);
-        const spots = await spotApi.getFeaturedSpots();
+        const [spots, contents] = await Promise.all([
+          spotApi.getFeaturedSpots(),
+          contentApi.getFeaturedContents(),
+        ]);
         setFeaturedSpots(spots);
+        setFeaturedContents(contents);
       } catch (error) {
-        console.error('Failed to load featured spots:', error);
+        console.error('Failed to load data:', error);
       } finally {
         setLoading(false);
       }
     };
 
-    loadFeaturedSpots();
+    loadData();
   }, []);
 
   return (
@@ -51,6 +57,14 @@ export default function Home() {
           </h1>
         </div>
       </section>
+
+      {/* Content Carousel Section */}
+      {featuredContents.length > 0 && (
+        <ContentCarousel
+          contents={featuredContents}
+          title={t('home.contentCarousel')}
+        />
+      )}
 
       {/* Categories Section */}
       <section className="py-16 px-4 bg-gray-50">

@@ -56,7 +56,8 @@
     },
     "featured": "おすすめスポット",
     "popular": "人気スポット",
-    "categories": "カテゴリー"
+    "categories": "カテゴリー",
+    "contentCarousel": "人気作品 & アーティスト"
   },
   "category": {
     "drama": "ドラマロケ地",
