@@ -109,22 +109,46 @@ export default function Home() {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-20 px-4 bg-gradient-to-r from-pink-500 to-purple-600">
-        <div className="max-w-4xl mx-auto text-center text-white">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">
-            Start Your K-Culture Journey Today
-          </h2>
-          <p className="text-lg text-pink-100 mb-8">
-            Discover the filming locations of your favorite dramas and the footsteps of K-POP stars
-          </p>
-          <Link
-            to="/spots"
-            className="inline-flex items-center gap-2 bg-white text-pink-600 px-8 py-4 rounded-full font-semibold hover:bg-gray-100 transition-all shadow-lg"
-          >
-            Explore All Spots
-            <ArrowRight className="w-5 h-5" />
-          </Link>
+      {/* Trending Courses Section */}
+      <section className="py-16 px-4 bg-gray-50">
+        <div className="max-w-7xl mx-auto">
+          <h2 className="text-3xl font-bold text-center mb-10">Trending Courses</h2>
+          <div className="space-y-4">
+            {[
+              { rank: 1, title: '폭삭속았수다 반나절코스', author: '공식계정', category: 'drama', duration: '4시간', spots: 3 },
+              { rank: 2, title: 'NCT WISH 서울 투어', author: 'SM엔터테인먼트', category: 'kpop', duration: '5시간', spots: 4 },
+              { rank: 3, title: '오징어게임 완전정복 코스', author: '넷플릭스', category: 'drama', duration: '6시간', spots: 5 },
+              { rank: 4, title: 'BTS 성지순례 투어', author: 'HYBE', category: 'kpop', duration: '8시간', spots: 6 },
+              { rank: 5, title: 'K-Pop Hunters 홍대 투어', author: '넷플릭스', category: 'movie', duration: '3시간', spots: 3 },
+            ].map((course) => (
+              <div
+                key={course.rank}
+                className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow p-6 flex items-center gap-6"
+              >
+                <div className="flex-shrink-0 w-16 h-16 bg-gradient-to-r from-pink-500 to-purple-600 rounded-full flex items-center justify-center">
+                  <span className="text-white text-2xl font-bold">#{course.rank}</span>
+                </div>
+                <div className="flex-grow">
+                  <h3 className="text-xl font-semibold text-gray-900 mb-1">
+                    {course.title} <span className="text-gray-400 text-base font-normal">by {course.author}</span>
+                  </h3>
+                  <div className="flex items-center gap-3 text-sm text-gray-600">
+                    <span className="text-pink-500 font-medium">#{course.category}</span>
+                    <span className="text-gray-400">•</span>
+                    <span>{course.duration}</span>
+                    <span className="text-gray-400">•</span>
+                    <span>{course.spots}개 스팟</span>
+                  </div>
+                </div>
+                <Link
+                  to="/spots"
+                  className="flex-shrink-0 bg-pink-500 hover:bg-pink-600 text-white px-6 py-3 rounded-full font-semibold transition-colors"
+                >
+                  둘러보기
+                </Link>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
     </div>
