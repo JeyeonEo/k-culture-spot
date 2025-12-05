@@ -16,6 +16,39 @@
     "movie": "电影",
     "all": "全部景点"
   },
+  "bottomNav": {
+    "explore": "探索",
+    "community": "社区",
+    "favorites": "收藏",
+    "settings": "设置"
+  },
+  "community": {
+    "title": "社区",
+    "subtitle": "与韩流粉丝交流",
+    "createPost": "分享您的故事",
+    "comingSoon": "更多功能即将推出"
+  },
+  "favorites": {
+    "title": "收藏",
+    "subtitle": "查看您保存的景点",
+    "saved": "保存于",
+    "empty": "还没有保存的景点",
+    "emptyDesc": "保存您喜爱的景点，稍后在这里找到它们",
+    "explore": "探索景点"
+  },
+  "settings": {
+    "title": "设置",
+    "subtitle": "管理应用设置",
+    "account": "账户",
+    "profile": "个人资料",
+    "notifications": "通知",
+    "preferences": "偏好设置",
+    "language": "语言",
+    "about": "关于",
+    "aboutApp": "关于应用",
+    "privacy": "隐私政策",
+    "help": "帮助"
+  },
   "home": {
     "hero": {
       "title": "与K-Culture一起探索韩国",
