@@ -1,0 +1,46 @@
+{
+  "name": "YG엔터테인먼트 건물 (BLACKPINK 관련 스팟)",
+  "description": "BLACKPINK가 소속된 YG엔터테인먼트 본사 건물입니다. 블랙핑크 팬들이 많이 찾는 스팟으로, 건물 앞에서 사진을 찍거나 팬 서비스 행사에 참여할 수 있습니다. K-pop 팬들의 필수 방문지입니다.",
+  "name_en": "YG Entertainment Building (BLACKPINK Related Spot)",
+  "description_en": "The headquarters building of YG Entertainment, home to BLACKPINK. A popular spot for BLACKPINK fans, where you can take photos in front of the building or participate in fan service events. A must-visit destination for K-pop fans.",
+  "name_ja": "YGエンターテインメント建物（BLACKPINK関連スポット）",
+  "description_ja": "BLACKPINKが所属するYGエンターテインメント本社建物です。BLACKPINKファンが多く訪れるスポットで、建物の前で写真を撮ったり、ファンサービスイベントに参加することができます。K-popファンの必須訪問地です。",
+  "name_zh": "YG娱乐大楼（BLACKPINK相关景点）",
+  "description_zh": "BLACKPINK所属的YG娱乐总部大楼。是BLACKPINK粉丝常去的景点，可以在大楼前拍照或参加粉丝服务活动。K-pop粉丝的必访地。",
+  "address": "서울특별시 마포구 합정동 희우정로 1길",
+  "address_en": "1-gil, Heewoojeong-ro, Hapjeong-dong, Mapo-gu, Seoul",
+  "latitude": 37.5495,
+  "longitude": 126.9219,
+  "category": "kpop",
+  "image_url": "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=800",
+  "images": [
+    "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=800",
+    "https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=800",
+    "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=800"
+  ],
+  "phone": "02-2203-8000",
+  "website": "https://www.ygfamily.com",
+  "hours": "평일 09:00-18:00 (외부 관람만 가능)",
+  "tags": ["BLACKPINK", "블랙핑크", "K-pop", "아이돌", "YG엔터테인먼트", "합정동", "팬사인회"],
+  "content_id": "kpop_blackpink_001",
+  "related_contents": [
+    {
+      "title": "BLACKPINK",
+      "title_en": "BLACKPINK",
+      "title_ja": "BLACKPINK",
+      "title_zh": "BLACKPINK",
+      "content_type": "music",
+      "year": 2016,
+      "image_url": "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=400"
+    },
+    {
+      "title": "BORN PINK",
+      "title_en": "BORN PINK",
+      "title_ja": "BORN PINK",
+      "title_zh": "BORN PINK",
+      "content_type": "music",
+      "year": 2022,
+      "image_url": "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=400"
+    }
+  ]
+}

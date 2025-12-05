@@ -1,0 +1,37 @@
+{
+  "name": "인천 중앙공원 (오징어 게임 촬영지)",
+  "description": "넷플릭스 대히트 드라마 '오징어 게임'의 유명한 달고나 게임 촬영지입니다. 드라마에서 배우들이 달고나를 뜨는 장면이 촬영된 곳으로, 많은 팬들이 실제 달고나 체험을 하러 방문하는 인기 장소입니다.",
+  "name_en": "Incheon Central Park (Squid Game Filming Location)",
+  "description_en": "The famous dalgona game filming location from Netflix hit drama 'Squid Game'. This is where the scene of actors cutting dalgona was filmed, and many fans visit to experience making dalgona themselves. A popular destination for drama fans.",
+  "name_ja": "仁川中央公園（イカゲーム 撮影地）",
+  "description_ja": "Netflix大ヒットドラマ「イカゲーム」の有名なダルゴナゲーム撮影地です。ドラマで俳優たちがダルゴナを彫るシーンが撮影された場所で、多くのファンが実際にダルゴナ体験をしに訪れる人気スポットです。",
+  "name_zh": "仁川中央公园（鱿鱼游戏拍摄地）",
+  "description_zh": "Netflix热门剧《鱿鱼游戏》中著名的椪糖游戏拍摄地。这里是剧中演员们雕刻椪糖的场景拍摄地，很多粉丝都会来这里体验制作椪糖。是剧迷们的热门打卡地。",
+  "address": "인천광역시 연수구 컨벤시아대로 149",
+  "address_en": "149 Convensia-daero, Yeonsu-gu, Incheon",
+  "latitude": 37.3947,
+  "longitude": 126.6343,
+  "category": "drama",
+  "image_url": "https://images.unsplash.com/photo-1517164850305-99a3e65bb47e?w=800",
+  "images": [
+    "https://images.unsplash.com/photo-1517164850305-99a3e65bb47e?w=800",
+    "https://images.unsplash.com/photo-1511578314322-379afb476865?w=800",
+    "https://images.unsplash.com/photo-1497993950456-cdb5af77f40e?w=800"
+  ],
+  "phone": "032-453-2020",
+  "website": "https://www.icjg.go.kr",
+  "hours": "매일 24시간 개방",
+  "tags": ["오징어게임", "squid game", "넷플릭스", "드라마", "촬영지", "달고나", "인천", "공원"],
+  "content_id": "drama_squid_game_001",
+  "related_contents": [
+    {
+      "title": "오징어 게임",
+      "title_en": "Squid Game",
+      "title_ja": "イカゲーム",
+      "title_zh": "鱿鱼游戏",
+      "content_type": "drama",
+      "year": 2021,
+      "image_url": "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=400"
+    }
+  ]
+}

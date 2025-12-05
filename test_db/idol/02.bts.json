@@ -1,0 +1,46 @@
+{
+  "name": "방탄소년단 방송국 (BTS 관련 스팟)",
+  "description": "방탄소년단(BTS)이 자주 출연했던 음악 방송 스튜디오입니다. MBC, SBS 등 주요 방송국이 위치해 있으며, BTS 팬들이 아이돌을 만날 수 있기를 기원하며 방문하는 성지입니다. 팬 행사와 이벤트가 종종 열리는 곳입니다.",
+  "name_en": "BTS Broadcasting Station (BTS Related Spot)",
+  "description_en": "Music broadcast studios where BTS frequently appeared. Major broadcasting stations like MBC and SBS are located here, making it a pilgrimage site for BTS fans hoping to see their idols. Fan events are often held here.",
+  "name_ja": "防弾少年団放送局（BTS関連スポット）",
+  "description_ja": "防弾少年団（BTS）がよく出演した音楽放送スタジオです。MBC、SBSなどの主要放送局が位置しており、BTSファンがアイドルに会えることを願って訪れる聖地です。ファンイベントがよく開かれる場所です。",
+  "name_zh": "防弹少年团广播局（BTS相关景点）",
+  "description_zh": "防弹少年团(BTS)经常出演的音乐放送工作室。MBC、SBS等主要电视台都位于这里，是BTS粉丝希望见到偶像而前往的圣地。经常举办粉丝活动。",
+  "address": "서울특별시 마포구 상암동 상암산로 267",
+  "address_en": "267 Sangamsan-ro, Sangam-dong, Mapo-gu, Seoul",
+  "latitude": 37.5764,
+  "longitude": 126.8889,
+  "category": "kpop",
+  "image_url": "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=800",
+  "images": [
+    "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=800",
+    "https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=800",
+    "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=800"
+  ],
+  "phone": "02-789-0000",
+  "website": "https://www.mbc.co.kr",
+  "hours": "방송 시간에 따라 상이 (사전 확인 필요)",
+  "tags": ["BTS", "방탄소년단", "K-pop", "아이돌", "방송국", "MBC", "SBS", "상암동"],
+  "content_id": "kpop_bts_001",
+  "related_contents": [
+    {
+      "title": "방탄소년단",
+      "title_en": "BTS",
+      "title_ja": "防弾少年団",
+      "title_zh": "防弹少年团",
+      "content_type": "music",
+      "year": 2013,
+      "image_url": "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=400"
+    },
+    {
+      "title": "Dynamite",
+      "title_en": "Dynamite",
+      "title_ja": "Dynamite",
+      "title_zh": "Dynamite",
+      "content_type": "music",
+      "year": 2020,
+      "image_url": "https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=400"
+    }
+  ]
+}
