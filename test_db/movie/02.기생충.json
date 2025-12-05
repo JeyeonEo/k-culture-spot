@@ -1,0 +1,37 @@
+{
+  "name": "반지하 집 (기생충 촬영지)",
+  "description": "봉준호 감독의 영화 '기생충'에서 김씨 가족이 살던 반지하 집 촬영지입니다. 영화에서 중요한 배경이 된 이 장소는 실제로는 영화 촬영용 세트장으로 만들어졌지만, 영화의 메시지를 생생하게 전달하는 장소입니다.",
+  "name_en": "Semi-Basement House (Parasite Filming Location)",
+  "description_en": "The semi-basement house filming location where the Kim family lived in Bong Joon-ho's film 'Parasite'. This important location in the film was actually built as a film set, but vividly conveys the movie's message.",
+  "name_ja": "半地下の家（パラサイト 撮影地）",
+  "description_ja": "ポン・ジュノ監督の映画「パラサイト」でキム家が住んでいた半地下の家の撮影地です。映画で重要な背景となったこの場所は、実際には映画撮影用のセットとして作られましたが、映画のメッセージを生々しく伝える場所です。",
+  "name_zh": "半地下室（寄生虫拍摄地）",
+  "description_zh": "奉俊昊导演的电影《寄生虫》中金家居住的半地下室拍摄地。虽然这个在电影中作为重要背景的地方实际上是作为电影拍摄用的布景搭建的，但它生动地传达了电影所要表达的信息。",
+  "address": "경기도 고양시 일산동구 장항동",
+  "address_en": "Janghang-dong, Ilsandong-gu, Goyang-si, Gyeonggi-do",
+  "latitude": 37.6584,
+  "longitude": 126.7756,
+  "category": "movie",
+  "image_url": "https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=800",
+  "images": [
+    "https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=800",
+    "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=800",
+    "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800"
+  ],
+  "phone": "031-900-0000",
+  "website": null,
+  "hours": "영화 세트장 (일반 관람 불가)",
+  "tags": ["기생충", "parasite", "봉준호", "영화", "촬영지", "반지하", "세트장", "고양시"],
+  "content_id": "movie_parasite_002",
+  "related_contents": [
+    {
+      "title": "기생충",
+      "title_en": "Parasite",
+      "title_ja": "パラサイト",
+      "title_zh": "寄生虫",
+      "content_type": "movie",
+      "year": 2019,
+      "image_url": "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=400"
+    }
+  ]
+}

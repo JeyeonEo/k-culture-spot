@@ -13,7 +13,7 @@ from fastapi.responses import JSONResponse
 from slowapi.errors import RateLimitExceeded
 
 from app.core.config import settings
-from app.core.database import init_db
+from app.core.database import init_db, async_session_maker
 from app.api import api_router
 from app.middleware.cors import configure_cors, CORSConfig
 from app.middleware.rate_limiter import (
@@ -40,6 +40,22 @@ async def lifespan(app: FastAPI) -> AsyncGenerator:
     
     # Initialize database
     await init_db()
+
+    # Load test data if database is empty (development only)
+    if settings.is_development:
+        try:
+            from app.services.spot_service import SpotService
+            async with async_session_maker() as db:
+                service = SpotService(db)
+                spot_count = await service.count_spots()
+                if spot_count == 0:
+                    print("데이터베이스가 비어있습니다. test_db 데이터를 로드합니다...")
+                    from scripts.load_test_data import load_test_data
+                    loaded, skipped = await load_test_data(db, silent=True)
+                    if loaded > 0:
+                        print(f"✅ {loaded}개의 테스트 데이터가 로드되었습니다.")
+        except Exception as e:
+            print(f"⚠️  테스트 데이터 로드 중 오류 발생 (무시됨): {e}")
 
     yield
 

@@ -1,0 +1,37 @@
+{
+  "name": "원조할매국밥 (극한직업 촬영지)",
+  "description": "2019년 개봉한 코미디 영화 '극한직업'의 주요 촬영지입니다. 영화에서 경찰들이 감시하던 치킨집이 바로 이곳입니다. 영화 개봉 후 많은 관광객들이 찾아와 실제로 치킨을 맛보며 영화의 재미를 다시 한번 느낄 수 있는 곳입니다.",
+  "name_en": "Wonjo Halmae Gukbap (Extreme Job Filming Location)",
+  "description_en": "The main filming location for the 2019 comedy film 'Extreme Job'. This is the chicken restaurant that the police were monitoring in the film. After the film's release, many tourists visit to taste the actual chicken and relive the fun of the movie.",
+  "name_ja": "元祖ハルメクッパ（極限職業 撮影地）",
+  "description_ja": "2019年公開のコメディ映画「極限職業」の主要撮影地です。映画で警察が監視していたチキン店がまさにこの場所です。映画公開後、多くの観光客が訪れて実際にチキンを味わいながら映画の楽しさを再び感じることができる場所です。",
+  "name_zh": "元祖奶奶汤饭（极限职业拍摄地）",
+  "description_zh": "2019年上映的喜剧电影《极限职业》的主要拍摄地。这里是电影中警察监视的炸鸡店。电影上映后，很多游客都会来这里品尝炸鸡，再次感受电影的乐趣。",
+  "address": "인천광역시 남동구 논현동 508-23",
+  "address_en": "508-23 Nonhyeon-dong, Namdong-gu, Incheon",
+  "latitude": 37.4048,
+  "longitude": 126.7239,
+  "category": "movie",
+  "image_url": "https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?w=800",
+  "images": [
+    "https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?w=800",
+    "https://images.unsplash.com/photo-1606755962773-d324e0a13086?w=800",
+    "https://images.unsplash.com/photo-1598515214211-89d3c73c83b4?w=800"
+  ],
+  "phone": "032-432-1234",
+  "website": null,
+  "hours": "매일 11:00-22:00",
+  "tags": ["극한직업", "extreme job", "영화", "촬영지", "치킨집", "인천", "코미디"],
+  "content_id": "movie_extreme_job_001",
+  "related_contents": [
+    {
+      "title": "극한직업",
+      "title_en": "Extreme Job",
+      "title_ja": "極限職業",
+      "title_zh": "极限职业",
+      "content_type": "movie",
+      "year": 2019,
+      "image_url": "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=400"
+    }
+  ]
+}

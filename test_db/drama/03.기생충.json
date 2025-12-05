@@ -1,0 +1,37 @@
+{
+  "name": "하우스 카페 (기생충 촬영지)",
+  "description": "봉준호 감독의 영화 '기생충'에서 상류층 박사장의 집으로 등장한 건물입니다. 실제로는 카페로 운영되고 있어 영화의 분위기를 느끼며 음료를 즐길 수 있습니다. 영화 팬들의 필수 방문지입니다.",
+  "name_en": "House Cafe (Parasite Filming Location)",
+  "description_en": "The building featured as the wealthy Park family's house in Bong Joon-ho's film 'Parasite'. It's now operated as a cafe where you can enjoy drinks while experiencing the atmosphere of the movie. A must-visit destination for film fans.",
+  "name_ja": "ハウスカフェ（パラサイト 撮影地）",
+  "description_ja": "ポン・ジュノ監督の映画「パラサイト」で上流階級のパク社長の家として登場した建物です。実際にはカフェとして運営されており、映画の雰囲気を感じながら飲み物を楽しむことができます。映画ファンの必須訪問地です。",
+  "name_zh": "House Cafe（寄生虫拍摄地）",
+  "description_zh": "奉俊昊导演的电影《寄生虫》中作为上层阶级朴社长家出现的建筑。现在实际作为咖啡厅运营，可以在这里一边感受电影氛围一边享受饮品。是电影迷的必访地。",
+  "address": "서울특별시 종로구 자하문로 137",
+  "address_en": "137 Jahamun-ro, Jongno-gu, Seoul",
+  "latitude": 37.5768,
+  "longitude": 126.9701,
+  "category": "drama",
+  "image_url": "https://images.unsplash.com/photo-1558629012-2c3cce4a3e67?w=800",
+  "images": [
+    "https://images.unsplash.com/photo-1558629012-2c3cce4a3e67?w=800",
+    "https://images.unsplash.com/photo-1556438064-2d7646166914?w=800",
+    "https://images.unsplash.com/photo-1559329007-40df8a9345d8?w=800"
+  ],
+  "phone": "02-738-1010",
+  "website": "https://www.housecafe.kr",
+  "hours": "매일 10:00-22:00",
+  "tags": ["기생충", "parasite", "봉준호", "영화", "촬영지", "카페", "종로구", "자하문"],
+  "content_id": "drama_parasite_001",
+  "related_contents": [
+    {
+      "title": "기생충",
+      "title_en": "Parasite",
+      "title_ja": "パラサイト",
+      "title_zh": "寄生虫",
+      "content_type": "movie",
+      "year": 2019,
+      "image_url": "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=400"
+    }
+  ]
+}

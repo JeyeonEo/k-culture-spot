@@ -136,3 +136,9 @@ class SpotService:
         stmt = select(Spot).where(Spot.content_id == content_id)
         result = await self.db.execute(stmt)
         return result.scalar_one_or_none()
+
+    async def count_spots(self) -> int:
+        """Get total count of spots in database."""
+        stmt = select(func.count()).select_from(Spot)
+        result = await self.db.scalar(stmt)
+        return result or 0
