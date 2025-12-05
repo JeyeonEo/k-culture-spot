@@ -52,33 +52,3 @@ export interface SearchParams {
   page?: number;
   pageSize?: number;
 }
-
-export type MapProvider = 'google' | 'naver';
-
-export interface RouteStop {
-  id: string;
-  spot: Spot;
-  order: number;
-  duration?: string;
-  distance?: string;
-  notes?: string;
-}
-
-export interface Route {
-  id: string;
-  title: string;
-  titleEn: string;
-  titleJa: string;
-  titleZh: string;
-  description: string;
-  descriptionEn: string;
-  descriptionJa: string;
-  descriptionZh: string;
-  totalDuration: string;
-  totalDistance: string;
-  stops: RouteStop[];
-  imageUrl?: string;
-  tags: string[];
-  createdAt: string;
-  updatedAt: string;
-}

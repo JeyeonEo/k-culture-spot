@@ -44,10 +44,6 @@
     "notifications": "Notifications",
     "preferences": "Preferences",
     "language": "Language",
-    "mapProvider": "Map App",
-    "mapProviderDesc": "Choose which map app to use for viewing locations",
-    "googleMaps": "Google Maps",
-    "naverMaps": "Naver Maps",
     "about": "About",
     "aboutApp": "About App",
     "privacy": "Privacy Policy",
@@ -76,18 +72,7 @@
     "relatedContent": "Related Content",
     "howToGet": "How to Get There",
     "nearby": "Nearby Spots",
-    "tips": "Visitor Tips",
-    "openMap": "Open Map"
-  },
-  "route": {
-    "title": "Travel Routes",
-    "subtitle": "Follow our recommended travel itineraries",
-    "totalDuration": "Total Duration",
-    "totalDistance": "Total Distance",
-    "stop": "Stop",
-    "duration": "Duration",
-    "distance": "Distance",
-    "viewRoute": "View Route"
+    "tips": "Visitor Tips"
   },
   "footer": {
     "about": "About K-Culture Spot",

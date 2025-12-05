@@ -44,10 +44,6 @@
     "notifications": "通知",
     "preferences": "偏好设置",
     "language": "语言",
-    "mapProvider": "地图应用",
-    "mapProviderDesc": "选择查看位置时使用的地图应用",
-    "googleMaps": "Google 地图",
-    "naverMaps": "Naver 地图",
     "about": "关于",
     "aboutApp": "关于应用",
     "privacy": "隐私政策",
@@ -76,18 +72,7 @@
     "relatedContent": "相关内容",
     "howToGet": "交通方式",
     "nearby": "周边景点",
-    "tips": "游览提示",
-    "openMap": "打开地图"
-  },
-  "route": {
-    "title": "旅行路线",
-    "subtitle": "跟随我们推荐的旅行行程",
-    "totalDuration": "总时长",
-    "totalDistance": "总距离",
-    "stop": "站点",
-    "duration": "时长",
-    "distance": "距离",
-    "viewRoute": "查看路线"
+    "tips": "游览提示"
   },
   "footer": {
     "about": "关于K-Culture Spot",
