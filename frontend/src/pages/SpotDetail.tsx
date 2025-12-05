@@ -12,89 +12,51 @@ import {
 } from 'lucide-react';
 import type { Spot, SpotTip } from '../types';
 import ImageModal from '../components/ImageModal';
-
-// Mock data with tips
-const mockSpot: Spot = {
-  id: 1,
-  name: '남산타워',
-  nameEn: 'Namsan Tower',
-  nameJa: 'Nソウルタワー',
-  nameZh: '南山塔',
-  description: '남산타워(N서울타워)는 서울의 대표적인 랜드마크로, 수많은 드라마와 영화의 촬영지로 사랑받고 있습니다. 특히 드라마 "별에서 온 그대"에서 도민준과 천송이가 데이트를 즐긴 장소로 유명합니다. 서울 시내를 360도로 조망할 수 있으며, 사랑의 자물쇠가 있는 곳으로도 유명합니다.',
-  descriptionEn: 'Namsan Tower (N Seoul Tower) is a representative landmark of Seoul, beloved as a filming location for numerous dramas and movies. It is particularly famous as the place where Do Min-joon and Cheon Song-yi had their date in the drama "My Love from the Star". You can enjoy a 360-degree view of Seoul, and it is also famous for its love locks.',
-  descriptionJa: 'Nソウルタワーはソウルの代表的なランドマークで、数多くのドラマや映画の撮影地として愛されています。特にドラマ「星から来たあなた」でド・ミンジュンとチョン・ソンイがデートを楽しんだ場所として有名です。ソウル市内を360度見渡すことができ、愛の南京錠でも有名です。',
-  descriptionZh: '南山塔是首尔的代表性地标，作为众多电视剧和电影的拍摄地而深受喜爱。尤其是电视剧《来自星星的你》中都敏俊和千颂伊约会的地方而闻名。可以360度俯瞰首尔市区，也因爱情锁而闻名。',
-  address: '서울특별시 용산구 남산공원길 105',
-  addressEn: '105 Namsangongwon-gil, Yongsan-gu, Seoul',
-  latitude: 37.5512,
-  longitude: 126.9882,
-  category: 'drama',
-  imageUrl: 'https://images.unsplash.com/photo-1617469767053-d3b523a0b982?w=800',
-  mediaImage: 'https://images.unsplash.com/photo-1538485399081-7191377e8241?w=800',
-  images: [
-    'https://images.unsplash.com/photo-1617469767053-d3b523a0b982?w=600',
-    'https://images.unsplash.com/photo-1546874177-9e664107314e?w=600',
-    'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=600',
-    'https://images.unsplash.com/photo-1517154421773-0529f29ea451?w=600',
-  ],
-  relatedContent: [
-    {
-      id: 1,
-      title: '별에서 온 그대',
-      titleEn: 'My Love from the Star',
-      titleJa: '星から来たあなた',
-      titleZh: '来自星星的你',
-      type: 'drama',
-      year: 2013,
-    },
-  ],
-  phone: '02-3455-9277',
-  website: 'https://www.seoultower.co.kr',
-  hours: '10:00 - 23:00 (주말 10:00 - 24:00)',
-  tags: ['별에서 온 그대', '남산', '전망대', '데이트'],
-  tips: [
-    {
-      id: 1,
-      content: '야경을 보려면 일몰 30분 전에 가는 걸 추천해요! 해질녘부터 야경까지 다 볼 수 있어요 ✨',
-      author: '서울러버',
-      createdAt: '2024-03-15',
-    },
-    {
-      id: 2,
-      content: '케이블카 타고 올라가면 줄이 길어요. 버스 타고 올라가서 내려올 때 케이블카 타는 게 좋아요!',
-      author: '여행고수',
-      createdAt: '2024-03-10',
-    },
-    {
-      id: 3,
-      content: '사랑의 자물쇠 달려면 자물쇠 미리 사가세요! 현장에서 사면 비싸요 💸',
-      author: '알뜰족',
-      createdAt: '2024-02-28',
-    },
-  ],
-  viewCount: 25000,
-  createdAt: '2024-01-01',
-  updatedAt: '2024-01-01',
-};
+import { spotApi } from '../api/client';
 
 export default function SpotDetail() {
-  const { id: _id } = useParams();
+  const { id } = useParams();
   const navigate = useNavigate();
   const { t, i18n } = useTranslation();
-  const spot = mockSpot; // TODO: fetch from API using _id
 
+  const [spot, setSpot] = useState<Spot | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   const [isPinned, setIsPinned] = useState(false);
   const [copied, setCopied] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
+  // Fetch spot data from API
+  useEffect(() => {
+    const fetchSpot = async () => {
+      if (!id) return;
+
+      setLoading(true);
+      setError(null);
+      try {
+        const data = await spotApi.getSpotById(parseInt(id));
+        setSpot(data);
+      } catch (err) {
+        console.error('Failed to fetch spot:', err);
+        setError('장소 정보를 불러오는데 실패했습니다.');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchSpot();
+  }, [id]);
+
   // Check if spot is pinned in localStorage
   useEffect(() => {
+    if (!spot) return;
     const pinnedSpots = JSON.parse(localStorage.getItem('pinnedSpots') || '[]');
     setIsPinned(pinnedSpots.includes(spot.id));
-  }, [spot.id]);
+  }, [spot]);
 
   const getName = () => {
+    if (!spot) return '';
     switch (i18n.language) {
       case 'en': return spot.nameEn || spot.name;
       case 'ja': return spot.nameJa || spot.name;
@@ -104,6 +66,7 @@ export default function SpotDetail() {
   };
 
   const getDescription = () => {
+    if (!spot) return '';
     switch (i18n.language) {
       case 'en': return spot.descriptionEn || spot.description;
       case 'ja': return spot.descriptionJa || spot.description;
@@ -113,6 +76,7 @@ export default function SpotDetail() {
   };
 
   const getAddress = () => {
+    if (!spot) return '';
     if (i18n.language === 'en') {
       return spot.addressEn || spot.address;
     }
@@ -120,6 +84,7 @@ export default function SpotDetail() {
   };
 
   const handlePin = () => {
+    if (!spot) return;
     const pinnedSpots = JSON.parse(localStorage.getItem('pinnedSpots') || '[]');
     if (isPinned) {
       const newPinned = pinnedSpots.filter((id: number) => id !== spot.id);
@@ -142,23 +107,55 @@ export default function SpotDetail() {
   };
 
   const openGoogleMaps = () => {
+    if (!spot) return;
     const url = `https://www.google.com/maps/search/?api=1&query=${spot.latitude},${spot.longitude}`;
     window.open(url, '_blank');
   };
 
   const openNaverMaps = () => {
+    if (!spot) return;
     const url = `https://map.naver.com/v5/search/${encodeURIComponent(spot.address)}`;
     window.open(url, '_blank');
   };
 
   const handleImageClick = (index: number, isMediaImage: boolean = false) => {
+    if (!spot) return;
     setCurrentImageIndex(isMediaImage ? 0 : (spot.mediaImage ? index + 1 : index));
     setModalOpen(true);
   };
 
-  const allImages = spot.mediaImage
+  const allImages = spot && spot.mediaImage
     ? [spot.mediaImage, ...spot.images]
-    : spot.images;
+    : spot?.images || [];
+
+  // Loading state
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-pink-500 mx-auto mb-4"></div>
+          <p className="text-gray-500">{i18n.language === 'ko' ? '로딩 중...' : 'Loading...'}</p>
+        </div>
+      </div>
+    );
+  }
+
+  // Error state
+  if (error || !spot) {
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="text-center">
+          <p className="text-xl text-red-500 mb-4">{error || '장소를 찾을 수 없습니다.'}</p>
+          <button
+            onClick={() => navigate(-1)}
+            className="px-4 py-2 bg-pink-500 text-white rounded-lg hover:bg-pink-600"
+          >
+            {t('common.back')}
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-gray-50 pb-20">
