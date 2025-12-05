@@ -1,5 +1,12 @@
 export type Category = 'drama' | 'kpop' | 'movie' | 'variety';
 
+export interface SpotTip {
+  id: number;
+  content: string;
+  author: string;
+  createdAt: string;
+}
+
 export interface Spot {
   id: number;
   name: string;
@@ -17,11 +24,13 @@ export interface Spot {
   category: Category;
   imageUrl: string;
   images: string[];
+  mediaImage?: string;
   relatedContent: RelatedContent[];
   phone?: string;
   website?: string;
   hours?: string;
   tags: string[];
+  tips?: SpotTip[];
   viewCount: number;
   createdAt: string;
   updatedAt: string;

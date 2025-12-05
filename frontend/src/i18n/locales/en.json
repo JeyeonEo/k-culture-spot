@@ -66,13 +66,18 @@
   },
   "spot": {
     "address": "Address",
+    "description": "Description",
+    "information": "Information",
     "hours": "Hours",
     "phone": "Phone",
     "website": "Website",
     "relatedContent": "Related Content",
     "howToGet": "How to Get There",
     "nearby": "Nearby Spots",
-    "tips": "Visitor Tips"
+    "tips": "Visitor Tips",
+    "mediaScene": "Scene from media",
+    "pin": "Save",
+    "unpin": "Unsave"
   },
   "contentDetail": {
     "spots": "Spots",

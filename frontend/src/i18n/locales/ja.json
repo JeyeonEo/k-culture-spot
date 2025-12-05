@@ -66,13 +66,18 @@
   },
   "spot": {
     "address": "住所",
+    "description": "説明",
+    "information": "情報",
     "hours": "営業時間",
     "phone": "電話番号",
     "website": "ウェブサイト",
     "relatedContent": "関連コンテンツ",
     "howToGet": "アクセス方法",
     "nearby": "周辺スポット",
-    "tips": "訪問のヒント"
+    "tips": "お得情報",
+    "mediaScene": "メディアのシーン",
+    "pin": "保存する",
+    "unpin": "保存解除"
   },
   "contentDetail": {
     "spots": "スポット",

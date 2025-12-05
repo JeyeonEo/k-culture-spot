@@ -66,13 +66,18 @@
   },
   "spot": {
     "address": "地址",
+    "description": "说明",
+    "information": "信息",
     "hours": "营业时间",
     "phone": "电话",
     "website": "网站",
     "relatedContent": "相关内容",
     "howToGet": "交通方式",
     "nearby": "周边景点",
-    "tips": "游览提示"
+    "tips": "小贴士",
+    "mediaScene": "媒体场景",
+    "pin": "收藏",
+    "unpin": "取消收藏"
   },
   "contentDetail": {
     "spots": "景点",
