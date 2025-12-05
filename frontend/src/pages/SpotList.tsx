@@ -52,7 +52,7 @@ export default function SpotList() {
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-gray-900">{t('nav.all')}</h1>
           <p className="text-gray-600 mt-2">
-            {loading ? t('common.loading') : `${total}개의 스팟이 있습니다`}
+            {loading ? '로딩 중...' : `${total}개의 스팟이 있습니다`}
           </p>
         </div>
 
@@ -96,7 +96,7 @@ export default function SpotList() {
         {/* Spots Grid/List */}
         {loading ? (
           <div className="text-center py-16">
-            <p className="text-gray-500">{t('common.loading')}</p>
+            <p className="text-gray-500">로딩 중...</p>
           </div>
         ) : spots.length > 0 ? (
           <>
