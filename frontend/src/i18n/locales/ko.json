@@ -66,13 +66,18 @@
   },
   "spot": {
     "address": "주소",
+    "description": "설명",
+    "information": "정보",
     "hours": "운영시간",
     "phone": "전화번호",
     "website": "웹사이트",
     "relatedContent": "관련 콘텐츠",
     "howToGet": "가는 방법",
     "nearby": "주변 명소",
-    "tips": "방문 팁"
+    "tips": "꿀팁",
+    "mediaScene": "미디어 장면",
+    "pin": "저장하기",
+    "unpin": "저장 취소"
   },
   "contentDetail": {
     "spots": "스팟",
