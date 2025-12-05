@@ -74,6 +74,13 @@
     "nearby": "주변 명소",
     "tips": "방문 팁"
   },
+  "contentDetail": {
+    "spots": "스팟",
+    "tours": "추천 코스",
+    "allSpots": "모든 스팟",
+    "allTours": "모든 코스",
+    "byOfficial": "by official"
+  },
   "footer": {
     "about": "K-Culture Spot 소개",
     "aboutText": "K-Culture Spot은 한류 콘텐츠와 관련된 한국 관광 명소를 소개하는 서비스입니다.",

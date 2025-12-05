@@ -74,6 +74,13 @@
     "nearby": "周边景点",
     "tips": "游览提示"
   },
+  "contentDetail": {
+    "spots": "景点",
+    "tours": "推荐路线",
+    "allSpots": "全部景点",
+    "allTours": "全部路线",
+    "byOfficial": "by official"
+  },
   "footer": {
     "about": "关于K-Culture Spot",
     "aboutText": "K-Culture Spot是介绍与韩流内容相关的韩国旅游景点的服务。",
