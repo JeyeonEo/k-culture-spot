@@ -1,18 +1,9 @@
 import { useTranslation } from 'react-i18next';
-import { Settings as SettingsIcon, Globe, Bell, User, Info, Shield, HelpCircle, ChevronRight, Map } from 'lucide-react';
+import { Settings as SettingsIcon, Globe, Bell, User, Info, Shield, HelpCircle, ChevronRight } from 'lucide-react';
 import LanguageSelector from '../components/LanguageSelector';
-import { useState, useEffect } from 'react';
-import type { MapProvider } from '../types';
 
 export default function Settings() {
   const { t } = useTranslation();
-  const [mapProvider, setMapProvider] = useState<MapProvider>(() => {
-    return (localStorage.getItem('mapProvider') as MapProvider) || 'google';
-  });
-
-  useEffect(() => {
-    localStorage.setItem('mapProvider', mapProvider);
-  }, [mapProvider]);
 
   const settingsSections = [
     {
@@ -26,7 +17,6 @@ export default function Settings() {
       title: t('settings.preferences'),
       items: [
         { icon: Globe, label: t('settings.language'), action: 'language', hasCustomContent: true },
-        { icon: Map, label: t('settings.mapProvider'), action: 'mapProvider', hasCustomContent: true },
       ],
     },
     {
@@ -76,49 +66,7 @@ export default function Settings() {
                           <Icon className="w-5 h-5 text-gray-600" />
                           <span className="font-medium text-gray-800">{item.label}</span>
                         </div>
-                        {item.action === 'language' ? (
-                          <LanguageSelector />
-                        ) : item.action === 'mapProvider' ? (
-                          <div className="space-y-3">
-                            <p className="text-sm text-gray-600">{t('settings.mapProviderDesc')}</p>
-                            <div className="space-y-2">
-                              <button
-                                onClick={() => setMapProvider('google')}
-                                className={`w-full px-4 py-3 rounded-lg border-2 transition-all ${
-                                  mapProvider === 'google'
-                                    ? 'border-pink-500 bg-pink-50'
-                                    : 'border-gray-200 hover:border-gray-300'
-                                }`}
-                              >
-                                <div className="flex items-center justify-between">
-                                  <span className="font-medium text-gray-800">{t('settings.googleMaps')}</span>
-                                  {mapProvider === 'google' && (
-                                    <div className="w-5 h-5 bg-pink-500 rounded-full flex items-center justify-center">
-                                      <ChevronRight className="w-3 h-3 text-white rotate-90" />
-                                    </div>
-                                  )}
-                                </div>
-                              </button>
-                              <button
-                                onClick={() => setMapProvider('naver')}
-                                className={`w-full px-4 py-3 rounded-lg border-2 transition-all ${
-                                  mapProvider === 'naver'
-                                    ? 'border-pink-500 bg-pink-50'
-                                    : 'border-gray-200 hover:border-gray-300'
-                                }`}
-                              >
-                                <div className="flex items-center justify-between">
-                                  <span className="font-medium text-gray-800">{t('settings.naverMaps')}</span>
-                                  {mapProvider === 'naver' && (
-                                    <div className="w-5 h-5 bg-pink-500 rounded-full flex items-center justify-center">
-                                      <ChevronRight className="w-3 h-3 text-white rotate-90" />
-                                    </div>
-                                  )}
-                                </div>
-                              </button>
-                            </div>
-                          </div>
-                        ) : null}
+                        <LanguageSelector />
                       </div>
                     ) : (
                       <button className="w-full px-4 py-4 flex items-center justify-between hover:bg-gray-50 transition-colors group">

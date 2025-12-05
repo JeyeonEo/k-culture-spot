@@ -44,10 +44,6 @@
     "notifications": "通知",
     "preferences": "環境設定",
     "language": "言語",
-    "mapProvider": "地図アプリ",
-    "mapProviderDesc": "位置表示に使用する地図アプリを選択してください",
-    "googleMaps": "Google マップ",
-    "naverMaps": "Naver 地図",
     "about": "情報",
     "aboutApp": "アプリについて",
     "privacy": "プライバシーポリシー",
@@ -76,18 +72,7 @@
     "relatedContent": "関連コンテンツ",
     "howToGet": "アクセス方法",
     "nearby": "周辺スポット",
-    "tips": "訪問のヒント",
-    "openMap": "地図を開く"
-  },
-  "route": {
-    "title": "旅行コース",
-    "subtitle": "おすすめの旅行ルートをたどってみましょう",
-    "totalDuration": "総所要時間",
-    "totalDistance": "総距離",
-    "stop": "停留所",
-    "duration": "所要時間",
-    "distance": "距離",
-    "viewRoute": "コースを見る"
+    "tips": "訪問のヒント"
   },
   "footer": {
     "about": "K-Culture Spotについて",
