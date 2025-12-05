@@ -86,6 +86,14 @@
     "allTours": "全部路线",
     "byOfficial": "by official"
   },
+  "tour": {
+    "duration": "所需",
+    "startNavigation": "开始导航",
+    "openNavigation": "打开导航",
+    "totalDistance": "总距离",
+    "travelTime": "行驶时间",
+    "spots": "景点"
+  },
   "footer": {
     "about": "关于K-Culture Spot",
     "aboutText": "K-Culture Spot是介绍与韩流内容相关的韩国旅游景点的服务。",
