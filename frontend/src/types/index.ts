@@ -77,12 +77,27 @@ export interface Content {
   descriptionZh?: string;
 }
 
+export interface TourSpot {
+  order: number;
+  spot: Spot;
+  description?: string;
+  descriptionEn?: string;
+  descriptionJa?: string;
+  descriptionZh?: string;
+  travelTimeToNext?: string;
+  travelDistanceToNext?: string;
+}
+
 export interface Tour {
   id: number;
   title: string;
   titleEn: string;
   titleJa: string;
   titleZh: string;
+  subtitle?: string;
+  subtitleEn?: string;
+  subtitleJa?: string;
+  subtitleZh?: string;
   description: string;
   descriptionEn: string;
   descriptionJa: string;
@@ -93,4 +108,6 @@ export interface Tour {
   spotCount: number;
   duration: string;
   contentId: number;
+  totalDistance?: string;
+  spots?: TourSpot[];
 }

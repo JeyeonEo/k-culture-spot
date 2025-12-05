@@ -86,6 +86,14 @@
     "allTours": "모든 코스",
     "byOfficial": "by official"
   },
+  "tour": {
+    "duration": "소요",
+    "startNavigation": "길안내 시작",
+    "openNavigation": "네비게이션 열기",
+    "totalDistance": "총 거리",
+    "travelTime": "이동 시간",
+    "spots": "스팟"
+  },
   "footer": {
     "about": "K-Culture Spot 소개",
     "aboutText": "K-Culture Spot은 한류 콘텐츠와 관련된 한국 관광 명소를 소개하는 서비스입니다.",
