@@ -1,8 +1,8 @@
-# CLAUDE.md - AI Assistant Guide for k-culture-spot
+# CLAUDE.md - AI Assistant Guide for HypeSpot
 
 ## Project Overview
 
-**k-culture-spot** is a Python project for Korean culture discovery and exploration. This repository is in its early stages of development.
+**HypeSpot** is a Python project for Korean culture discovery and exploration. This repository is in its early stages of development.
 
 - **License**: MIT License
 - **Author**: jeyeon.eo
@@ -11,7 +11,7 @@
 ## Repository Structure
 
 ```
-k-culture-spot/
+hypespot/
 ├── .gitignore          # Python-specific gitignore
 ├── LICENSE             # MIT License
 ├── README.md           # Project readme

@@ -1,5 +1,5 @@
 """
-K-Culture-Spot Main Application.
+HypeSpot Main Application.
 
 This is the main entry point for the FastAPI application with
 comprehensive security measures implemented.
