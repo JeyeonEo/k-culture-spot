@@ -1,5 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { AuthProvider } from './contexts/AuthContext';
+import ProtectedRoute from './components/ProtectedRoute';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import BottomNavigation from './components/BottomNavigation';
@@ -15,6 +17,8 @@ import ContentDetail from './pages/ContentDetail';
 import ContentSpotsList from './pages/ContentSpotsList';
 import ContentToursList from './pages/ContentToursList';
 import TourDetail from './pages/TourDetail';
+import Login from './pages/Login';
+import Register from './pages/Register';
 import AdminDashboard from './pages/admin/AdminDashboard';
 import AdminContents from './pages/admin/AdminContents';
 import AdminContentForm from './pages/admin/AdminContentForm';
@@ -33,36 +37,78 @@ const queryClient = new QueryClient({
 export default function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <BrowserRouter>
-        <div className="flex flex-col min-h-screen">
-          <Header />
-          <main className="flex-1">
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/spots" element={<SpotList />} />
-              <Route path="/spots/:id" element={<SpotDetail />} />
-              <Route path="/content/:id" element={<ContentDetail />} />
-              <Route path="/content/:id/spots" element={<ContentSpotsList />} />
-              <Route path="/content/:id/tours" element={<ContentToursList />} />
-              <Route path="/tours/:id" element={<TourDetail />} />
-              <Route path="/category/:category" element={<CategoryPage />} />
-              <Route path="/search" element={<SearchPage />} />
-              <Route path="/community" element={<Community />} />
-              <Route path="/favorites" element={<Favorites />} />
-              <Route path="/settings" element={<Settings />} />
+      <AuthProvider>
+        <BrowserRouter>
+          <div className="flex flex-col min-h-screen">
+            <Header />
+            <main className="flex-1">
+              <Routes>
+                {/* Public Routes */}
+                <Route path="/" element={<Home />} />
+                <Route path="/spots" element={<SpotList />} />
+                <Route path="/spots/:id" element={<SpotDetail />} />
+                <Route path="/content/:id" element={<ContentDetail />} />
+                <Route path="/content/:id/spots" element={<ContentSpotsList />} />
+                <Route path="/content/:id/tours" element={<ContentToursList />} />
+                <Route path="/tours/:id" element={<TourDetail />} />
+                <Route path="/category/:category" element={<CategoryPage />} />
+                <Route path="/search" element={<SearchPage />} />
+                <Route path="/community" element={<Community />} />
+                <Route path="/favorites" element={<Favorites />} />
+                <Route path="/settings" element={<Settings />} />
 
-              {/* Admin Routes */}
-              <Route path="/admin" element={<AdminDashboard />} />
-              <Route path="/admin/contents" element={<AdminContents />} />
-              <Route path="/admin/contents/:id" element={<AdminContentForm />} />
-              <Route path="/admin/tours" element={<AdminTours />} />
-              <Route path="/admin/tours/:id" element={<AdminTourForm />} />
-            </Routes>
-          </main>
-          <Footer />
-          <BottomNavigation />
-        </div>
-      </BrowserRouter>
+                {/* Auth Routes */}
+                <Route path="/login" element={<Login />} />
+                <Route path="/register" element={<Register />} />
+
+                {/* Protected Admin Routes */}
+                <Route
+                  path="/admin"
+                  element={
+                    <ProtectedRoute requireAdmin>
+                      <AdminDashboard />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/admin/contents"
+                  element={
+                    <ProtectedRoute requireAdmin>
+                      <AdminContents />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/admin/contents/:id"
+                  element={
+                    <ProtectedRoute requireAdmin>
+                      <AdminContentForm />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/admin/tours"
+                  element={
+                    <ProtectedRoute requireAdmin>
+                      <AdminTours />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/admin/tours/:id"
+                  element={
+                    <ProtectedRoute requireAdmin>
+                      <AdminTourForm />
+                    </ProtectedRoute>
+                  }
+                />
+              </Routes>
+            </main>
+            <Footer />
+            <BottomNavigation />
+          </div>
+        </BrowserRouter>
+      </AuthProvider>
     </QueryClientProvider>
   );
 }

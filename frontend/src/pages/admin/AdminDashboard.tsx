@@ -63,12 +63,12 @@ export default function AdminDashboard() {
         </Link>
       </div>
 
-      <div className="mt-8 p-6 bg-yellow-50 rounded-lg border border-yellow-200">
-        <h3 className="text-lg font-semibold mb-2 text-yellow-800">주의사항</h3>
-        <ul className="list-disc list-inside text-yellow-700 space-y-1">
-          <li>현재 인증 시스템이 구현되지 않았습니다.</li>
-          <li>누구나 관리자 페이지에 접근할 수 있으니 주의하세요.</li>
-          <li>프로덕션 환경에서는 반드시 인증을 구현해야 합니다.</li>
+      <div className="mt-8 p-6 bg-green-50 rounded-lg border border-green-200">
+        <h3 className="text-lg font-semibold mb-2 text-green-800">✓ 보안 상태</h3>
+        <ul className="list-disc list-inside text-green-700 space-y-1">
+          <li>인증 시스템이 활성화되어 있습니다.</li>
+          <li>관리자 권한이 있는 사용자만 이 페이지에 접근할 수 있습니다.</li>
+          <li>모든 관리 작업은 안전하게 보호되고 있습니다.</li>
         </ul>
       </div>
     </div>

@@ -198,3 +198,45 @@ export interface TourSpotCreateData {
   noteEn?: string;
   durationMinutes?: number;
 }
+
+// Authentication types
+export type UserRole = 'user' | 'admin';
+
+export interface User {
+  id: number;
+  email: string;
+  fullName?: string;
+  role: UserRole;
+  isActive: boolean;
+  isVerified: boolean;
+  createdAt: string;
+  lastLogin?: string;
+}
+
+export interface LoginCredentials {
+  email: string;
+  password: string;
+}
+
+export interface RegisterData {
+  email: string;
+  password: string;
+  fullName?: string;
+}
+
+export interface AuthToken {
+  accessToken: string;
+  tokenType: string;
+}
+
+export interface AuthContextType {
+  user: User | null;
+  token: string | null;
+  login: (credentials: LoginCredentials) => Promise<void>;
+  register: (data: RegisterData) => Promise<void>;
+  logout: () => void;
+  isAuthenticated: boolean;
+  isAdmin: boolean;
+  loading: boolean;
+}
+

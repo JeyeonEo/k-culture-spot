@@ -11,12 +11,46 @@ import type {
   TourListResponse,
   TourCreateData,
   TourSpotCreateData,
+  LoginCredentials,
+  RegisterData,
+  AuthToken,
+  User,
 } from '../types';
 
 const api = axios.create({
   baseURL: '/api',
   timeout: 10000,
 });
+
+// Request interceptor to add auth token
+api.interceptors.request.use(
+  (config) => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+);
+
+// Response interceptor to handle auth errors
+api.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    if (error.response?.status === 401) {
+      // Clear token and redirect to login
+      localStorage.removeItem('token');
+      localStorage.removeItem('user');
+      if (window.location.pathname.startsWith('/admin')) {
+        window.location.href = '/login';
+      }
+    }
+    return Promise.reject(error);
+  }
+);
 
 export const spotApi = {
   getSpots: async (params: SearchParams = {}): Promise<SpotListResponse> => {
@@ -200,6 +234,33 @@ export const tourApi = {
 
   getTourSpots: async (tourId: number) => {
     const { data } = await api.get(`/tours/${tourId}/spots`);
+    return data;
+  },
+};
+
+export const authApi = {
+  login: async (credentials: LoginCredentials): Promise<AuthToken> => {
+    const { data } = await api.post('/auth/login', credentials);
+    return data;
+  },
+
+  register: async (registerData: RegisterData): Promise<User> => {
+    const { data } = await api.post('/auth/register', registerData);
+    return data;
+  },
+
+  getCurrentUser: async (): Promise<User> => {
+    const { data } = await api.get('/auth/me');
+    return data;
+  },
+
+  promoteToAdmin: async (userId: number): Promise<User> => {
+    const { data } = await api.post(`/auth/promote/${userId}`);
+    return data;
+  },
+
+  demoteFromAdmin: async (userId: number): Promise<User> => {
+    const { data } = await api.post(`/auth/demote/${userId}`);
     return data;
   },
 };
