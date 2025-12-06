@@ -1,5 +1,5 @@
 import axios from 'axios';
-import type { Spot, SpotListResponse, SearchParams, Content } from '../types';
+import type { Spot, SpotListResponse, SearchParams, Content, Tour } from '../types';
 
 const api = axios.create({
   baseURL: '/api',
@@ -55,6 +55,23 @@ export const contentApi = {
 
   getContentById: async (id: number): Promise<Content> => {
     const { data } = await api.get(`/contents/${id}`);
+    return data;
+  },
+};
+
+export const tourApi = {
+  getTours: async (): Promise<Tour[]> => {
+    const { data } = await api.get('/tours');
+    return data;
+  },
+
+  getFeaturedTours: async (): Promise<Tour[]> => {
+    const { data } = await api.get('/tours/featured');
+    return data;
+  },
+
+  getTourById: async (id: number): Promise<Tour> => {
+    const { data } = await api.get(`/tours/${id}`);
     return data;
   },
 };
