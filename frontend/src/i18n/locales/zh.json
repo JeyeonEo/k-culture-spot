@@ -57,7 +57,8 @@
     "featured": "推荐景点",
     "popular": "热门景点",
     "categories": "分类",
-    "contentCarousel": "热门作品 & 艺人"
+    "contentCarousel": "热门作品 & 艺人",
+    "recommendedTours": "推荐路线"
   },
   "category": {
     "drama": "电视剧拍摄地",
@@ -101,6 +102,15 @@
     "contact": "联系我们",
     "terms": "服务条款",
     "privacy": "隐私政策",
+    "thanksTo": "Thanks to",
     "copyright": "© 2024 HypeSpot. 保留所有权利。"
+  },
+  "thanks": {
+    "title": "为什么创建HypeSpot",
+    "story1": "这个服务始于和朋友们一起去日本福井看NCT WISH的前田力久的旅行。",
+    "highlight": "\"我们想追随喜欢的艺人的足迹，但信息太分散了。\"",
+    "story2": "从各处收集零散的信息真的很累。SNS、博客、粉丝咖啡厅...信息很多，但没有一个地方可以一次性看到所有内容。",
+    "story3": "于是我们想到：让我们创建一个服务，让所有粉丝都能轻松找到圣地巡礼信息。HypeSpot就这样诞生了。",
+    "signature": "— HypeSpot开发团队"
   }
 }

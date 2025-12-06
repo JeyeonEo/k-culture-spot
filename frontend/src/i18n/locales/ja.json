@@ -57,7 +57,8 @@
     "featured": "おすすめスポット",
     "popular": "人気スポット",
     "categories": "カテゴリー",
-    "contentCarousel": "人気作品 & アーティスト"
+    "contentCarousel": "人気作品 & アーティスト",
+    "recommendedTours": "おすすめコース"
   },
   "category": {
     "drama": "ドラマロケ地",
@@ -101,6 +102,15 @@
     "contact": "お問い合わせ",
     "terms": "利用規約",
     "privacy": "プライバシーポリシー",
+    "thanksTo": "Thanks to",
     "copyright": "© 2024 HypeSpot. All rights reserved."
+  },
+  "thanks": {
+    "title": "HypeSpotを作った理由",
+    "story1": "このサービスは、友達と一緒にNCT WISHの前田リクに会いに日本の福井まで行った旅から始まりました。",
+    "highlight": "「好きなアーティストの足跡を辿りたいのに、情報があまりにも散らばっていました。」",
+    "story2": "あちこちに散らばった情報を一つ一つ集めるのは本当に大変でした。SNS、ブログ、ファンカフェ...情報はたくさんあったけど、一か所で見られる場所はありませんでした。",
+    "story3": "だから考えました。推し活をするすべての方が簡単に聖地巡礼情報を見つけられるサービスを作ろうと。HypeSpotはそうして生まれました。",
+    "signature": "— HypeSpot開発チーム"
   }
 }

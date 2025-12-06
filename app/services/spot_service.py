@@ -64,6 +64,7 @@ class SpotService:
         return spot
 
     async def get_featured_spots(self, limit: int = 8) -> list[Spot]:
+        """Get featured spots ordered by view count (same as popular spots)."""
         stmt = (
             select(Spot)
             .options(selectinload(Spot.related_contents))
@@ -74,14 +75,8 @@ class SpotService:
         return list(result.scalars().all())
 
     async def get_popular_spots(self, limit: int = 8) -> list[Spot]:
-        stmt = (
-            select(Spot)
-            .options(selectinload(Spot.related_contents))
-            .order_by(Spot.view_count.desc())
-            .limit(limit)
-        )
-        result = await self.db.execute(stmt)
-        return list(result.scalars().all())
+        """Alias for get_featured_spots - returns spots ordered by view count."""
+        return await self.get_featured_spots(limit)
 
     async def get_spots_by_category(
         self, category: Category, page: int = 1, page_size: int = 20

@@ -1,8 +1,10 @@
 import { useParams, Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { ArrowLeft } from 'lucide-react';
+import { useQuery } from '@tanstack/react-query';
+import { ArrowLeft, Loader2 } from 'lucide-react';
 import type { Content, Spot } from '../types';
 import SpotCard from '../components/SpotCard';
+import { contentApi } from '../api/client';
 
 // Mock data - content detail
 const mockContent: Content = {
@@ -161,10 +163,26 @@ const mockSpots: Spot[] = [
 export default function ContentSpotsList() {
   const { id } = useParams();
   const { t, i18n } = useTranslation();
-  const content = mockContent; // TODO: fetch by id from API
-  const spots = mockSpots;
+  const contentId = Number(id);
+
+  // Fetch content details
+  const { data: content, isLoading: contentLoading, error: contentError } = useQuery({
+    queryKey: ['content', contentId],
+    queryFn: () => contentApi.getContentById(contentId),
+    enabled: !!contentId && !isNaN(contentId),
+  });
+
+  // Fetch content spots
+  const { data: spots = [], isLoading: spotsLoading } = useQuery({
+    queryKey: ['contentSpots', contentId],
+    queryFn: () => contentApi.getContentSpots(contentId),
+    enabled: !!contentId && !isNaN(contentId),
+  });
+
+  const isLoading = contentLoading || spotsLoading;
 
   const getContentTitle = () => {
+    if (!content) return '';
     switch (i18n.language) {
       case 'en': return content.titleEn || content.title;
       case 'ja': return content.titleJa || content.title;
@@ -172,6 +190,46 @@ export default function ContentSpotsList() {
       default: return content.title;
     }
   };
+
+  // Loading state
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="flex flex-col items-center gap-3">
+          <Loader2 className="w-8 h-8 animate-spin text-pink-500" />
+          <p className="text-gray-500">{t('common.loading')}</p>
+        </div>
+      </div>
+    );
+  }
+
+  // Error state
+  if (contentError || !content) {
+    return (
+      <div className="min-h-screen bg-gray-50">
+        <div className="sticky top-0 z-10 bg-white border-b">
+          <div className="max-w-5xl mx-auto px-4 py-4 flex items-center gap-4">
+            <Link
+              to="/"
+              className="p-2 hover:bg-gray-100 rounded-full transition-colors"
+            >
+              <ArrowLeft className="w-6 h-6" />
+            </Link>
+            <h1 className="text-xl font-bold">{t('common.error')}</h1>
+          </div>
+        </div>
+        <div className="max-w-5xl mx-auto px-4 py-12 text-center">
+          <p className="text-gray-500 mb-4">{t('contentDetail.notFound')}</p>
+          <Link
+            to="/"
+            className="text-pink-500 hover:text-pink-600 font-medium"
+          >
+            {t('common.backToHome')}
+          </Link>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-gray-50">
