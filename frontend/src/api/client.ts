@@ -1,10 +1,56 @@
 import axios from 'axios';
-import type { Spot, SpotListResponse, SearchParams, Content, Tour } from '../types';
+import type {
+  Spot,
+  SpotListResponse,
+  SearchParams,
+  Content,
+  ContentListResponse,
+  ContentCreateData,
+  ContentType,
+  Tour,
+  TourListResponse,
+  TourCreateData,
+  TourSpotCreateData,
+  LoginCredentials,
+  RegisterData,
+  AuthToken,
+  User,
+} from '../types';
 
 const api = axios.create({
   baseURL: '/api',
   timeout: 10000,
 });
+
+// Request interceptor to add auth token
+api.interceptors.request.use(
+  (config) => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+);
+
+// Response interceptor to handle auth errors
+api.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    if (error.response?.status === 401) {
+      // Clear token and redirect to login
+      localStorage.removeItem('token');
+      localStorage.removeItem('user');
+      if (window.location.pathname.startsWith('/admin')) {
+        window.location.href = '/login';
+      }
+    }
+    return Promise.reject(error);
+  }
+);
 
 export const spotApi = {
   getSpots: async (params: SearchParams = {}): Promise<SpotListResponse> => {
@@ -43,13 +89,36 @@ export const spotApi = {
 };
 
 export const contentApi = {
-  getContents: async (): Promise<Content[]> => {
-    const { data } = await api.get('/contents');
+  getContents: async (params?: {
+    page?: number;
+    pageSize?: number;
+    contentType?: ContentType;
+    year?: number;
+    genre?: string;
+    query?: string;
+  }): Promise<ContentListResponse> => {
+    const { data } = await api.get('/contents', { params });
     return data;
   },
 
-  getFeaturedContents: async (): Promise<Content[]> => {
-    const { data } = await api.get('/contents/featured');
+  getFeaturedContents: async (contentType?: ContentType, limit = 8): Promise<Content[]> => {
+    const { data} = await api.get('/contents/featured', {
+      params: { content_type: contentType, limit },
+    });
+    return data;
+  },
+
+  getPopularContents: async (contentType?: ContentType, limit = 8): Promise<Content[]> => {
+    const { data } = await api.get('/contents/popular', {
+      params: { content_type: contentType, limit },
+    });
+    return data;
+  },
+
+  getRecentContents: async (contentType?: ContentType, limit = 8): Promise<Content[]> => {
+    const { data } = await api.get('/contents/recent', {
+      params: { content_type: contentType, limit },
+    });
     return data;
   },
 
@@ -58,20 +127,70 @@ export const contentApi = {
     return data;
   },
 
-  getContentSpots: async (contentId: number): Promise<Spot[]> => {
-    const { data } = await api.get(`/contents/${contentId}/spots`);
+  searchContents: async (query: string, contentType?: ContentType, limit = 20): Promise<Content[]> => {
+    const { data } = await api.get('/contents/search', {
+      params: { q: query, content_type: contentType, limit },
+    });
     return data;
   },
 
-  getContentTours: async (contentId: number): Promise<Tour[]> => {
-    const { data } = await api.get(`/contents/${contentId}/tours`);
+  createContent: async (contentData: ContentCreateData): Promise<Content> => {
+    const { data } = await api.post('/contents', contentData);
     return data;
+  },
+
+  updateContent: async (id: number, contentData: Partial<ContentCreateData>): Promise<Content> => {
+    const { data } = await api.patch(`/contents/${id}`, contentData);
+    return data;
+  },
+
+  deleteContent: async (id: number): Promise<void> => {
+    await api.delete(`/contents/${id}`);
+  },
+
+  linkSpotToContent: async (
+    contentId: number,
+    spotId: number,
+    sceneDescription?: string,
+    sceneDescriptionEn?: string,
+    episodeNumber?: number
+  ): Promise<void> => {
+    await api.post(`/contents/${contentId}/spots/${spotId}`, {
+      scene_description: sceneDescription,
+      scene_description_en: sceneDescriptionEn,
+      episode_number: episodeNumber,
+    });
+  },
+
+  unlinkSpotFromContent: async (contentId: number, spotId: number): Promise<void> => {
+    await api.delete(`/contents/${contentId}/spots/${spotId}`);
   },
 };
 
 export const tourApi = {
-  getTours: async (): Promise<Tour[]> => {
-    const { data } = await api.get('/tours');
+  getTours: async (params?: {
+    page?: number;
+    pageSize?: number;
+    difficulty?: string;
+    contentId?: number;
+    isFeatured?: boolean;
+    query?: string;
+  }): Promise<TourListResponse> => {
+    const { data } = await api.get('/tours', { params });
+    return data;
+  },
+
+  getFeaturedTours: async (limit = 8): Promise<Tour[]> => {
+    const { data } = await api.get('/tours/featured', {
+      params: { limit },
+    });
+    return data;
+  },
+
+  getPopularTours: async (limit = 8): Promise<Tour[]> => {
+    const { data } = await api.get('/tours/popular', {
+      params: { limit },
+    });
     return data;
   },
 
@@ -80,25 +199,68 @@ export const tourApi = {
     return data;
   },
 
-  getFeaturedTours: async (): Promise<Tour[]> => {
-    const { data } = await api.get('/tours/featured');
+  searchTours: async (query: string, limit = 20): Promise<Tour[]> => {
+    const { data } = await api.get('/tours/search', {
+      params: { q: query, limit },
+    });
+    return data;
+  },
+
+  createTour: async (tourData: TourCreateData): Promise<Tour> => {
+    const { data } = await api.post('/tours', tourData);
+    return data;
+  },
+
+  updateTour: async (id: number, tourData: Partial<TourCreateData>): Promise<Tour> => {
+    const { data } = await api.patch(`/tours/${id}`, tourData);
+    return data;
+  },
+
+  deleteTour: async (id: number): Promise<void> => {
+    await api.delete(`/tours/${id}`);
+  },
+
+  addSpotToTour: async (tourId: number, spotData: TourSpotCreateData): Promise<void> => {
+    await api.post(`/tours/${tourId}/spots`, spotData);
+  },
+
+  removeSpotFromTour: async (tourId: number, spotId: number): Promise<void> => {
+    await api.delete(`/tours/${tourId}/spots/${spotId}`);
+  },
+
+  reorderTourSpots: async (tourId: number, spotOrders: { spotId: number; order: number }[]): Promise<void> => {
+    await api.put(`/tours/${tourId}/spots/reorder`, spotOrders);
+  },
+
+  getTourSpots: async (tourId: number) => {
+    const { data } = await api.get(`/tours/${tourId}/spots`);
     return data;
   },
 };
 
-export const tourApi = {
-  getTours: async (): Promise<Tour[]> => {
-    const { data } = await api.get('/tours');
+export const authApi = {
+  login: async (credentials: LoginCredentials): Promise<AuthToken> => {
+    const { data } = await api.post('/auth/login', credentials);
     return data;
   },
 
-  getFeaturedTours: async (): Promise<Tour[]> => {
-    const { data } = await api.get('/tours/featured');
+  register: async (registerData: RegisterData): Promise<User> => {
+    const { data } = await api.post('/auth/register', registerData);
     return data;
   },
 
-  getTourById: async (id: number): Promise<Tour> => {
-    const { data } = await api.get(`/tours/${id}`);
+  getCurrentUser: async (): Promise<User> => {
+    const { data } = await api.get('/auth/me');
+    return data;
+  },
+
+  promoteToAdmin: async (userId: number): Promise<User> => {
+    const { data } = await api.post(`/auth/promote/${userId}`);
+    return data;
+  },
+
+  demoteFromAdmin: async (userId: number): Promise<User> => {
+    const { data } = await api.post(`/auth/demote/${userId}`);
     return data;
   },
 };
