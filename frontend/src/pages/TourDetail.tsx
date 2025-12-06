@@ -1,5 +1,6 @@
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { useQuery } from '@tanstack/react-query';
 import {
   ArrowLeft,
   Clock,
@@ -11,8 +12,10 @@ import {
   Camera,
   Utensils,
   Building,
+  Loader2,
 } from 'lucide-react';
 import type { Tour, TourSpot, Spot } from '../types';
+import { tourApi } from '../api/client';
 
 // Mock spot data for tour
 const mockSpots: Spot[] = [
@@ -152,12 +155,20 @@ const getSpotIcon = (_category: string, index: number) => {
 };
 
 export default function TourDetail() {
-  const { id: _id } = useParams();
+  const { id } = useParams();
   const navigate = useNavigate();
   const { t, i18n } = useTranslation();
-  const tour = mockTour; // TODO: fetch from API using _id
+  const tourId = Number(id);
+
+  // Fetch tour details
+  const { data: tour, isLoading, error } = useQuery({
+    queryKey: ['tour', tourId],
+    queryFn: () => tourApi.getTourById(tourId),
+    enabled: !!tourId && !isNaN(tourId),
+  });
 
   const getTourTitle = () => {
+    if (!tour) return '';
     switch (i18n.language) {
       case 'en': return tour.titleEn || tour.title;
       case 'ja': return tour.titleJa || tour.title;
@@ -167,6 +178,7 @@ export default function TourDetail() {
   };
 
   const getTourSubtitle = () => {
+    if (!tour) return '';
     switch (i18n.language) {
       case 'en': return tour.subtitleEn || tour.subtitle;
       case 'ja': return tour.subtitleJa || tour.subtitle;
@@ -194,7 +206,7 @@ export default function TourDetail() {
   };
 
   const openNaverMapsRoute = () => {
-    if (!tour.spots || tour.spots.length === 0) return;
+    if (!tour || !tour.spots || tour.spots.length === 0) return;
 
     const spots = tour.spots;
     const start = spots[0].spot;
@@ -204,6 +216,49 @@ export default function TourDetail() {
     const url = `https://map.naver.com/v5/directions/${start.longitude},${start.latitude},${encodeURIComponent(start.name)}/${end.longitude},${end.latitude},${encodeURIComponent(end.name)}/-/car`;
     window.open(url, '_blank');
   };
+
+  // Loading state
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="flex flex-col items-center gap-3">
+          <Loader2 className="w-8 h-8 animate-spin text-pink-500" />
+          <p className="text-gray-500">{t('common.loading')}</p>
+        </div>
+      </div>
+    );
+  }
+
+  // Error state
+  if (error || !tour) {
+    return (
+      <div className="min-h-screen bg-gray-50">
+        <header className="sticky top-0 z-40 bg-white border-b border-gray-200">
+          <div className="flex items-center justify-between px-4 h-14">
+            <button
+              onClick={() => navigate(-1)}
+              className="p-2 -ml-2 hover:bg-gray-100 rounded-full transition-colors"
+              aria-label={t('common.back')}
+            >
+              <ArrowLeft className="w-6 h-6" />
+            </button>
+            <div className="flex-1 mx-4">
+              <h1 className="font-bold text-lg">{t('common.error')}</h1>
+            </div>
+          </div>
+        </header>
+        <div className="px-4 py-12 text-center">
+          <p className="text-gray-500 mb-4">{t('tour.notFound')}</p>
+          <button
+            onClick={() => navigate(-1)}
+            className="text-pink-500 hover:text-pink-600 font-medium"
+          >
+            {t('common.back')}
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-gray-50 pb-20">

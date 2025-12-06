@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { Filter, Grid, List } from 'lucide-react';
 import SpotCard from '../components/SpotCard';
 import { spotApi } from '../api/client';
+import { useToast } from '../contexts/ToastContext';
 import type { Spot, Category } from '../types';
 
 const categories: { value: Category | 'all'; labelKey: string }[] = [
@@ -15,6 +16,7 @@ const categories: { value: Category | 'all'; labelKey: string }[] = [
 
 export default function SpotList() {
   const { t } = useTranslation();
+  const toast = useToast();
   const [selectedCategory, setSelectedCategory] = useState<Category | 'all'>('all');
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
   const [spots, setSpots] = useState<Spot[]>([]);
@@ -37,13 +39,14 @@ export default function SpotList() {
         }
       } catch (error) {
         console.error('Failed to load spots:', error);
+        toast.error(t('errors.loadSpotsFailed') || 'Failed to load spots. Please try again.');
       } finally {
         setLoading(false);
       }
     };
 
     loadSpots();
-  }, [selectedCategory, page]);
+  }, [selectedCategory, page, t, toast]);
 
   return (
     <div className="min-h-screen bg-gray-50 py-8">

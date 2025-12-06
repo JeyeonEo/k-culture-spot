@@ -57,6 +57,33 @@ export const contentApi = {
     const { data } = await api.get(`/contents/${id}`);
     return data;
   },
+
+  getContentSpots: async (contentId: number): Promise<Spot[]> => {
+    const { data } = await api.get(`/contents/${contentId}/spots`);
+    return data;
+  },
+
+  getContentTours: async (contentId: number): Promise<Tour[]> => {
+    const { data } = await api.get(`/contents/${contentId}/tours`);
+    return data;
+  },
+};
+
+export const tourApi = {
+  getTours: async (): Promise<Tour[]> => {
+    const { data } = await api.get('/tours');
+    return data;
+  },
+
+  getTourById: async (id: number): Promise<Tour> => {
+    const { data } = await api.get(`/tours/${id}`);
+    return data;
+  },
+
+  getFeaturedTours: async (): Promise<Tour[]> => {
+    const { data } = await api.get('/tours/featured');
+    return data;
+  },
 };
 
 export const tourApi = {
