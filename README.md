@@ -56,6 +56,25 @@ docker compose logs -f
 docker compose down
 ```
 
+### 첫 관리자 계정 생성
+
+처음 설치 후에는 관리자 계정이 없으므로 CLI 스크립트를 사용하여 생성해야 합니다:
+
+```bash
+# Docker 환경에서 실행
+docker compose exec app python scripts/create_admin.py
+
+# 로컬 개발 환경에서 실행
+python scripts/create_admin.py
+```
+
+스크립트를 실행하면 다음 정보를 입력하라는 메시지가 표시됩니다:
+- 관리자 이메일 (로그인 시 사용)
+- 비밀번호 (최소 6자 이상)
+- 이름 (선택사항)
+
+생성 후 http://localhost:3000/admin 에서 로그인할 수 있습니다.
+
 ### 로컬 개발 환경
 
 ```bash
