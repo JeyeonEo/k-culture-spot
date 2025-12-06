@@ -134,6 +134,23 @@ mypy .
 
 ## Project-Specific Notes
 
+### Admin Account Management
+
+The project includes a CLI script to create the first admin account:
+
+```bash
+# From project root
+python scripts/create_admin.py
+```
+
+This script:
+- Creates a user with ADMIN role directly
+- Prompts for email, password (min 6 chars), and optional name
+- Initializes the database if needed
+- Sets the account as verified and active
+
+**Location**: `scripts/create_admin.py`
+
 ### Future Development Areas
 As this project develops, this section should be updated with:
 - API endpoints and their purposes
