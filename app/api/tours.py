@@ -3,6 +3,8 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from math import ceil
 
 from app.core.database import get_db
+from app.core.deps import get_current_admin_user
+from app.models.user import User
 from app.services.tour_service import TourService
 from app.schemas.tour import (
     TourCreate,
@@ -129,7 +131,7 @@ async def get_tour(tour_id: int, db: AsyncSession = Depends(get_db)):
 async def create_tour(
     tour_data: TourCreate,
     db: AsyncSession = Depends(get_db),
-    # TODO: Add authentication dependency to verify admin role
+    current_admin: User = Depends(get_current_admin_user),
 ):
     """
     Create new tour with spots (admin only)
@@ -146,7 +148,7 @@ async def update_tour(
     tour_id: int,
     tour_data: TourUpdate,
     db: AsyncSession = Depends(get_db),
-    # TODO: Add authentication dependency to verify admin role
+    current_admin: User = Depends(get_current_admin_user),
 ):
     """
     Update existing tour (admin only)
@@ -170,7 +172,7 @@ async def update_tour(
 async def delete_tour(
     tour_id: int,
     db: AsyncSession = Depends(get_db),
-    # TODO: Add authentication dependency to verify admin role
+    current_admin: User = Depends(get_current_admin_user),
 ):
     """
     Delete tour (admin only)
@@ -194,7 +196,7 @@ async def add_spot_to_tour(
     tour_id: int,
     spot_data: TourSpotCreate,
     db: AsyncSession = Depends(get_db),
-    # TODO: Add authentication dependency to verify admin role
+    current_admin: User = Depends(get_current_admin_user),
 ):
     """
     Add a spot to tour (admin only)
@@ -219,7 +221,7 @@ async def remove_spot_from_tour(
     tour_id: int,
     spot_id: int,
     db: AsyncSession = Depends(get_db),
-    # TODO: Add authentication dependency to verify admin role
+    current_admin: User = Depends(get_current_admin_user),
 ):
     """
     Remove a spot from tour (admin only)
@@ -244,7 +246,7 @@ async def reorder_tour_spots(
     tour_id: int,
     spot_orders: list[dict[str, int]] = Body(...),
     db: AsyncSession = Depends(get_db),
-    # TODO: Add authentication dependency to verify admin role
+    current_admin: User = Depends(get_current_admin_user),
 ):
     """
     Update the order of spots in a tour (admin only)

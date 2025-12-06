@@ -3,6 +3,8 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from math import ceil
 
 from app.core.database import get_db
+from app.core.deps import get_current_admin_user
+from app.models.user import User
 from app.services.content_service import ContentService
 from app.schemas.content import (
     ContentCreate,
@@ -153,10 +155,12 @@ async def get_content(content_id: int, db: AsyncSession = Depends(get_db)):
 async def create_content(
     content_data: ContentCreate,
     db: AsyncSession = Depends(get_db),
-    # TODO: Add authentication dependency to verify admin role
+    current_admin: User = Depends(get_current_admin_user),
 ):
     """
     Create new content (admin only)
+
+    Requires admin authentication.
 
     - **content_data**: Content information
     """
@@ -170,10 +174,12 @@ async def update_content(
     content_id: int,
     content_data: ContentUpdate,
     db: AsyncSession = Depends(get_db),
-    # TODO: Add authentication dependency to verify admin role
+    current_admin: User = Depends(get_current_admin_user),
 ):
     """
     Update existing content (admin only)
+
+    Requires admin authentication.
 
     - **content_id**: Content ID
     - **content_data**: Fields to update
@@ -194,10 +200,12 @@ async def update_content(
 async def delete_content(
     content_id: int,
     db: AsyncSession = Depends(get_db),
-    # TODO: Add authentication dependency to verify admin role
+    current_admin: User = Depends(get_current_admin_user),
 ):
     """
     Delete content (admin only)
+
+    Requires admin authentication.
 
     - **content_id**: Content ID
     """
@@ -221,10 +229,12 @@ async def link_spot_to_content(
     scene_description_en: str | None = None,
     episode_number: int | None = None,
     db: AsyncSession = Depends(get_db),
-    # TODO: Add authentication dependency to verify admin role
+    current_admin: User = Depends(get_current_admin_user),
 ):
     """
     Link a spot to content (admin only)
+
+    Requires admin authentication.
 
     - **content_id**: Content ID
     - **spot_id**: Spot ID
@@ -248,10 +258,12 @@ async def unlink_spot_from_content(
     content_id: int,
     spot_id: int,
     db: AsyncSession = Depends(get_db),
-    # TODO: Add authentication dependency to verify admin role
+    current_admin: User = Depends(get_current_admin_user),
 ):
     """
     Unlink a spot from content (admin only)
+
+    Requires admin authentication.
 
     - **content_id**: Content ID
     - **spot_id**: Spot ID
