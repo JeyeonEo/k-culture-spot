@@ -1,17 +1,28 @@
-from sqlalchemy import select, func, or_, delete
-from sqlalchemy.ext.asyncio import AsyncSession
-from sqlalchemy.orm import selectinload
+"""Tour service with CRUD operations."""
+
 from typing import Optional
+from sqlalchemy import select
+from sqlalchemy.orm import selectinload
 
 from app.models.tour import Tour, TourSpot
 from app.schemas.tour import TourCreate, TourUpdate, TourSpotCreate
+from app.services.base_service import BaseService
 
 
-class TourService:
-    """Service for managing tour courses"""
+class TourService(BaseService[Tour, TourCreate, TourUpdate]):
+    """Service for managing tour courses."""
 
-    def __init__(self, db: AsyncSession):
-        self.db = db
+    model = Tour
+    searchable_fields = [
+        "title",
+        "title_en",
+        "title_ja",
+        "title_zh",
+        "description",
+        "description_en",
+        "tags",
+    ]
+    default_order_by = ["-is_featured", "-view_count"]
 
     async def get_tours(
         self,
@@ -22,98 +33,62 @@ class TourService:
         is_featured: Optional[bool] = None,
         query: Optional[str] = None,
     ) -> tuple[list[Tour], int]:
-        """Get paginated list of tours with filters"""
-        stmt = select(Tour)
-
-        # Apply filters
+        """Get paginated list of tours with filters."""
+        filters = {}
         if difficulty:
-            stmt = stmt.where(Tour.difficulty == difficulty)
-
+            filters["difficulty"] = difficulty
         if content_id:
-            stmt = stmt.where(Tour.content_id == content_id)
-
+            filters["content_id"] = content_id
         if is_featured is not None:
-            stmt = stmt.where(Tour.is_featured == is_featured)
+            filters["is_featured"] = is_featured
 
-        if query:
-            search_filter = or_(
-                Tour.title.ilike(f"%{query}%"),
-                Tour.title_en.ilike(f"%{query}%"),
-                Tour.title_ja.ilike(f"%{query}%"),
-                Tour.title_zh.ilike(f"%{query}%"),
-                Tour.description.ilike(f"%{query}%"),
-                Tour.description_en.ilike(f"%{query}%"),
-                Tour.tags.any(query),
-            )
-            stmt = stmt.where(search_filter)
-
-        # Get total count
-        count_stmt = select(func.count()).select_from(stmt.subquery())
-        total = await self.db.scalar(count_stmt) or 0
-
-        # Apply pagination and ordering
-        stmt = stmt.order_by(Tour.is_featured.desc(), Tour.view_count.desc())
-        stmt = stmt.offset((page - 1) * page_size).limit(page_size)
-
-        result = await self.db.execute(stmt)
-        tours = list(result.scalars().all())
-
-        return tours, total
+        return await self.get_items(
+            page=page,
+            page_size=page_size,
+            query=query,
+            filters=filters,
+        )
 
     async def get_tour_by_id(
         self, tour_id: int, with_spots: bool = False
     ) -> Optional[Tour]:
-        """Get tour by ID, optionally with ordered spots"""
-        stmt = select(Tour).where(Tour.id == tour_id)
-
+        """Get tour by ID, optionally with ordered spots."""
+        options = None
         if with_spots:
-            stmt = stmt.options(
-                selectinload(Tour.tour_spots).selectinload(TourSpot.spot)
-            )
+            options = [selectinload(Tour.tour_spots).selectinload(TourSpot.spot)]
 
-        result = await self.db.execute(stmt)
-        tour = result.scalar_one_or_none()
-
-        # Increment view count
-        if tour:
-            tour.view_count += 1
-            await self.db.commit()
-
-        return tour
+        return await self.get_by_id(
+            item_id=tour_id,
+            options=options,
+            increment_view=True,
+        )
 
     async def get_featured_tours(self, limit: int = 8) -> list[Tour]:
-        """Get featured tours"""
-        stmt = (
-            select(Tour)
-            .where(Tour.is_featured == True)
-            .order_by(Tour.view_count.desc())
-            .limit(limit)
+        """Get featured tours."""
+        return await self.get_featured(
+            limit=limit,
+            filters={"is_featured": True},
         )
-        result = await self.db.execute(stmt)
-        return list(result.scalars().all())
 
     async def get_popular_tours(self, limit: int = 8) -> list[Tour]:
-        """Get popular tours (most viewed)"""
-        stmt = select(Tour).order_by(Tour.view_count.desc()).limit(limit)
-        result = await self.db.execute(stmt)
-        return list(result.scalars().all())
+        """Get popular tours (most viewed)."""
+        return await self.get_popular(limit=limit)
 
     async def get_tours_by_content(
         self, content_id: int, page: int = 1, page_size: int = 20
     ) -> tuple[list[Tour], int]:
-        """Get tours related to specific content"""
+        """Get tours related to specific content."""
         return await self.get_tours(
             page=page, page_size=page_size, content_id=content_id
         )
 
     async def search_tours(self, query: str, limit: int = 20) -> list[Tour]:
-        """Search tours by query"""
-        tours, _ = await self.get_tours(page=1, page_size=limit, query=query)
-        return tours
+        """Search tours by query."""
+        return await self.search(query=query, limit=limit)
 
     async def create_tour(self, tour_data: TourCreate) -> Tour:
-        """Create new tour with spots (admin only)"""
-        # Create tour
+        """Create new tour with spots (admin only)."""
+        # Create tour without tour_spots
         tour_dict = tour_data.model_dump(exclude={"tour_spots"})
         tour = Tour(**tour_dict)
 
@@ -133,36 +108,17 @@ class TourService:
     async def update_tour(
         self, tour_id: int, tour_data: TourUpdate
     ) -> Optional[Tour]:
-        """Update existing tour (admin only)"""
-        tour = await self.get_tour_by_id(tour_id)
-        if not tour:
-            return None
-
-        # Update fields that are not None
-        update_data = tour_data.model_dump(exclude_unset=True)
-        for field, value in update_data.items():
-            setattr(tour, field, value)
-
-        await self.db.commit()
-        await self.db.refresh(tour)
-
-        return tour
+        """Update existing tour (admin only)."""
+        return await self.update(tour_id, tour_data)
 
     async def delete_tour(self, tour_id: int) -> bool:
-        """Delete tour (admin only)"""
-        tour = await self.get_tour_by_id(tour_id)
-        if not tour:
-            return False
-
-        await self.db.delete(tour)
-        await self.db.commit()
-
-        return True
+        """Delete tour (admin only)."""
+        return await self.delete(tour_id)
 
     async def add_spot_to_tour(
         self, tour_id: int, spot_data: TourSpotCreate
     ) -> Optional[TourSpot]:
-        """Add a spot to tour (admin only)"""
+        """Add a spot to tour (admin only)."""
         # Verify tour exists
         tour = await self.get_tour_by_id(tour_id)
         if not tour:
@@ -179,7 +135,7 @@ class TourService:
     async def remove_spot_from_tour(
         self, tour_id: int, spot_id: int
     ) -> bool:
-        """Remove a spot from tour (admin only)"""
+        """Remove a spot from tour (admin only)."""
         stmt = select(TourSpot).where(
             TourSpot.tour_id == tour_id, TourSpot.spot_id == spot_id
         )
@@ -198,7 +154,8 @@ class TourService:
         self, tour_id: int, spot_orders: list[dict[str, int]]
     ) -> bool:
         """
-        Update the order of spots in a tour (admin only)
+        Update the order of spots in a tour (admin only).
+
         spot_orders: [{"spot_id": 1, "order": 1}, {"spot_id": 2, "order": 2}, ...]
         """
         # Verify tour exists
@@ -224,7 +181,7 @@ class TourService:
         return True
 
     async def get_tour_spots(self, tour_id: int) -> list[TourSpot]:
-        """Get all spots in a tour, ordered"""
+        """Get all spots in a tour, ordered."""
         stmt = (
             select(TourSpot)
             .where(TourSpot.tour_id == tour_id)

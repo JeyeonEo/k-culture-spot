@@ -1,6 +1,7 @@
-from fastapi import APIRouter, Depends, HTTPException, status, Body
+"""Tour API endpoints."""
+
+from fastapi import APIRouter, Depends, status, Body
 from sqlalchemy.ext.asyncio import AsyncSession
-from math import ceil
 
 from app.core.database import get_db
 from app.core.deps import get_current_admin_user
@@ -12,10 +13,10 @@ from app.schemas.tour import (
     TourResponse,
     TourWithSpotsResponse,
     TourListResponse,
-    TourSearchParams,
     TourSpotCreate,
     TourSpotResponse,
 )
+from app.utils import Paginator, raise_not_found
 
 router = APIRouter(prefix="/api/tours", tags=["tours"])
 
@@ -31,7 +32,7 @@ async def get_tours(
     db: AsyncSession = Depends(get_db),
 ):
     """
-    Get paginated list of tours with optional filters
+    Get paginated list of tours with optional filters.
 
     - **page**: Page number (default: 1)
     - **page_size**: Items per page (default: 20)
@@ -50,14 +51,11 @@ async def get_tours(
         query=query,
     )
 
-    total_pages = ceil(total / page_size) if total > 0 else 0
-
-    return TourListResponse(
-        tours=tours,
+    paginator = Paginator(page, page_size)
+    return paginator.build_response(
+        items=tours,
         total=total,
-        page=page,
-        page_size=page_size,
-        total_pages=total_pages,
+        items_key="tours",
     )
 
 
@@ -67,7 +65,7 @@ async def get_featured_tours(
     db: AsyncSession = Depends(get_db),
 ):
     """
-    Get featured tours
+    Get featured tours.
 
     - **limit**: Number of tours to return (default: 8)
     """
@@ -82,7 +80,7 @@ async def get_popular_tours(
     db: AsyncSession = Depends(get_db),
 ):
     """
-    Get popular tours (most viewed)
+    Get popular tours (most viewed).
 
     - **limit**: Number of tours to return (default: 8)
     """
@@ -98,7 +96,7 @@ async def search_tours(
     db: AsyncSession = Depends(get_db),
 ):
     """
-    Search tours by query
+    Search tours by query.
 
     - **q**: Search query (required)
     - **limit**: Maximum results (default: 20)
@@ -111,7 +109,7 @@ async def search_tours(
 @router.get("/{tour_id}", response_model=TourWithSpotsResponse)
 async def get_tour(tour_id: int, db: AsyncSession = Depends(get_db)):
     """
-    Get tour by ID with ordered spots
+    Get tour by ID with ordered spots.
 
     - **tour_id**: Tour ID
     """
@@ -119,10 +117,7 @@ async def get_tour(tour_id: int, db: AsyncSession = Depends(get_db)):
     tour = await service.get_tour_by_id(tour_id, with_spots=True)
 
     if not tour:
-        raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND,
-            detail=f"Tour with id {tour_id} not found",
-        )
+        raise_not_found("Tour", tour_id)
 
     return tour
 
@@ -134,7 +129,7 @@ async def create_tour(
     current_admin: User = Depends(get_current_admin_user),
 ):
     """
-    Create new tour with spots (admin only)
+    Create new tour with spots (admin only).
 
     - **tour_data**: Tour information including spots
     """
@@ -151,7 +146,7 @@ async def update_tour(
     current_admin: User = Depends(get_current_admin_user),
 ):
     """
-    Update existing tour (admin only)
+    Update existing tour (admin only).
 
     - **tour_id**: Tour ID
     - **tour_data**: Fields to update
@@ -160,10 +155,7 @@ async def update_tour(
     tour = await service.update_tour(tour_id, tour_data)
 
     if not tour:
-        raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND,
-            detail=f"Tour with id {tour_id} not found",
-        )
+        raise_not_found("Tour", tour_id)
 
     return tour
 
@@ -175,7 +167,7 @@ async def delete_tour(
     current_admin: User = Depends(get_current_admin_user),
 ):
     """
-    Delete tour (admin only)
+    Delete tour (admin only).
 
     - **tour_id**: Tour ID
     """
@@ -183,15 +175,16 @@ async def delete_tour(
     deleted = await service.delete_tour(tour_id)
 
     if not deleted:
-        raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND,
-            detail=f"Tour with id {tour_id} not found",
-        )
+        raise_not_found("Tour", tour_id)
 
     return None
 
 
-@router.post("/{tour_id}/spots", response_model=TourSpotResponse, status_code=status.HTTP_201_CREATED)
+@router.post(
+    "/{tour_id}/spots",
+    response_model=TourSpotResponse,
+    status_code=status.HTTP_201_CREATED,
+)
 async def add_spot_to_tour(
     tour_id: int,
     spot_data: TourSpotCreate,
@@ -199,7 +192,7 @@ async def add_spot_to_tour(
     current_admin: User = Depends(get_current_admin_user),
 ):
     """
-    Add a spot to tour (admin only)
+    Add a spot to tour (admin only).
 
     - **tour_id**: Tour ID
     - **spot_data**: Spot information with order
@@ -208,10 +201,7 @@ async def add_spot_to_tour(
     tour_spot = await service.add_spot_to_tour(tour_id, spot_data)
 
     if not tour_spot:
-        raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND,
-            detail=f"Tour with id {tour_id} not found",
-        )
+        raise_not_found("Tour", tour_id)
 
     return tour_spot
 
@@ -224,7 +214,7 @@ async def remove_spot_from_tour(
     current_admin: User = Depends(get_current_admin_user),
 ):
     """
-    Remove a spot from tour (admin only)
+    Remove a spot from tour (admin only).
 
     - **tour_id**: Tour ID
     - **spot_id**: Spot ID
@@ -233,10 +223,7 @@ async def remove_spot_from_tour(
     deleted = await service.remove_spot_from_tour(tour_id, spot_id)
 
     if not deleted:
-        raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND,
-            detail="Tour spot not found",
-        )
+        raise_not_found("Tour spot")
 
     return None
 
@@ -249,7 +236,7 @@ async def reorder_tour_spots(
     current_admin: User = Depends(get_current_admin_user),
 ):
     """
-    Update the order of spots in a tour (admin only)
+    Update the order of spots in a tour (admin only).
 
     - **tour_id**: Tour ID
     - **spot_orders**: Array of {spot_id, order} objects
@@ -267,10 +254,7 @@ async def reorder_tour_spots(
     updated = await service.update_tour_spot_order(tour_id, spot_orders)
 
     if not updated:
-        raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND,
-            detail=f"Tour with id {tour_id} not found",
-        )
+        raise_not_found("Tour", tour_id)
 
     return {"message": "Tour spots reordered successfully"}
 
@@ -278,7 +262,7 @@ async def reorder_tour_spots(
 @router.get("/{tour_id}/spots", response_model=list[TourSpotResponse])
 async def get_tour_spots(tour_id: int, db: AsyncSession = Depends(get_db)):
     """
-    Get all spots in a tour, ordered
+    Get all spots in a tour, ordered.
 
     - **tour_id**: Tour ID
     """

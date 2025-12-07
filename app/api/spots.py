@@ -1,7 +1,8 @@
-from fastapi import APIRouter, Depends, HTTPException, Query
+"""Spot API endpoints."""
+
+from fastapi import APIRouter, Depends, Query
 from sqlalchemy.ext.asyncio import AsyncSession
 from typing import Optional
-import math
 
 from app.core.database import get_db
 from app.models.spot import Category
@@ -12,6 +13,7 @@ from app.schemas.spot import (
     SpotUpdate,
 )
 from app.services.spot_service import SpotService
+from app.utils import Paginator, raise_not_found
 
 router = APIRouter(prefix="/spots", tags=["spots"])
 
@@ -30,12 +32,12 @@ async def get_spots(
         page=page, page_size=page_size, category=category, query=q
     )
 
-    return SpotListResponse(
-        spots=[SpotResponse.model_validate(spot) for spot in spots],
+    paginator = Paginator(page, page_size)
+    return paginator.build_response(
+        items=spots,
         total=total,
-        page=page,
-        page_size=page_size,
-        total_pages=math.ceil(total / page_size) if total > 0 else 0,
+        items_key="spots",
+        item_transformer=lambda x: SpotResponse.model_validate(x),
     )
 
 
@@ -86,12 +88,12 @@ async def get_spots_by_category(
         category=category, page=page, page_size=page_size
     )
 
-    return SpotListResponse(
-        spots=[SpotResponse.model_validate(spot) for spot in spots],
+    paginator = Paginator(page, page_size)
+    return paginator.build_response(
+        items=spots,
         total=total,
-        page=page,
-        page_size=page_size,
-        total_pages=math.ceil(total / page_size) if total > 0 else 0,
+        items_key="spots",
+        item_transformer=lambda x: SpotResponse.model_validate(x),
     )
 
 
@@ -105,7 +107,7 @@ async def get_spot(
     spot = await service.get_spot_by_id(spot_id)
 
     if not spot:
-        raise HTTPException(status_code=404, detail="Spot not found")
+        raise_not_found("Spot", spot_id)
 
     return SpotResponse.model_validate(spot)
 
@@ -132,7 +134,7 @@ async def update_spot(
     spot = await service.update_spot(spot_id, spot_data)
 
     if not spot:
-        raise HTTPException(status_code=404, detail="Spot not found")
+        raise_not_found("Spot", spot_id)
 
     return SpotResponse.model_validate(spot)
 
@@ -147,4 +149,4 @@ async def delete_spot(
     deleted = await service.delete_spot(spot_id)
 
     if not deleted:
-        raise HTTPException(status_code=404, detail="Spot not found")
+        raise_not_found("Spot", spot_id)
